@@ -8,5 +8,7 @@ urlpatterns = [
     path('news/<int:pk>/delete', views.DeleteNewsView.as_view(), name='news-delete'),
     path('news/add', views.CreateNewsView.as_view(), name='news-add'),
     path('about', views.contacti, name='contacti'),
+    #to change!
+    path('conversations', views.contacti, name='conversations')
 ]
 

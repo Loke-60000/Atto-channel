@@ -1,0 +1,32 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}
+  Profile page
+{% endblock %}
+
+{% block content %}
+    <h1>Profile page</h1>
+    <div class="d-flex text-body-secondary pt-3">
+      <img class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="64" height="64" src="{{ user.profile.img.url}}">
+      <p class="pb-3 mb-0 small lh-sm border-bottom">
+        <strong class="d-block text-gray-dark">@{{ user.username }}</strong>
+        {% if user.email %}
+        <b>Email: </b>  {{ user.email}}
+        {% else %}
+        <b>Email: hidden by CERN</b>
+        {% endif %}
+      </p>
+    </div>
+    <form method="post" enctype="multipart/form-data" class="form-register mt-4">
+        {% csrf_token %}
+        {{ updateUserForm.as_p }}
+        {{ profileForm.as_p }}
+        <button class="btn btn-outline-warning" type="submit">Update</button>
+    </form>
+{% endblock %}
+
+{% block aside_block %}
+    <h4>Side part !</h4>
+    <img src="/pictures/chan.png" class="img-thumbnail">
+    <p>It's a great django website written without JS!</p>
+{% endblock %}

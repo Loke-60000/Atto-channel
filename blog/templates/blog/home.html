@@ -1,0 +1,40 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block content %}
+
+    <h1>{{ title }}</h1>
+    {% for post in news %}
+        <div class="alert alert-dark">
+            <h3>{{ post.title }}</h3>
+            <p>{{ post.text }}</p>
+            <div class="row">
+                <div>
+                    <img src="{{ post.author.profile.img.url }}" alt="{{ post.author }}" class="user_images" >
+                </div>
+                <div class="mt-2">
+                    <span class="text-muted" >published: {{ post.date|date:"d E Y H:i" }}</span>
+                    {% if post.author %}
+                        <p>Author: {{ post.author }}</p>
+                    {% else %}
+                        <p>Author: <b>Anonymous</b>, date: {{ post.date|date }}</p>
+                    {% endif %}
+                </div>
+            </div>
+            <a href="{% url 'news-detail' post.id %}" class="btn btn-outline-warning">Read full </a>
+        </div>
+    {% endfor %}
+{% endblock %}
+
+{% block aside_block %}
+    <h4>Side main part !</h4>
+    <img src="pictures/chan.png" class="img-thumbnail">
+    <p>It's a great django website (Main part) written without privacy-threatening JS!</p>
+
+    <h4>Side main part !</h4>
+    <img src="pictures/chan.png" class="img-thumbnail">
+    <p>It's a great django website (Main part) written without privacy-threatening JS!</p>
+{% endblock %}

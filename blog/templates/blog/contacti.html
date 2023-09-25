@@ -1,0 +1,15 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block content %}
+    <h1>{{ title }}</h1>
+{% endblock %}
+
+{% block aside_block %}
+    <h4>Side part !</h4>
+    <img src="../pictures/chan.png" class="img-thumbnail">
+    <p>It's a great django website written without JS!</p>
+{% endblock %}

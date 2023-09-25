@@ -1,0 +1,21 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}
+  Deleting article
+{% endblock %}
+
+{% block content %}
+    <h1>Are you sure about deleting "{{ object.title }}"?</h1>
+    <form method="post" class="form-register auth">
+        {% csrf_token %}
+        <button class="btn btn-outline-danger" type="submit">Yes, delete</button>
+        <a href="{% url 'news-detail' object.id %}">No, cancel</a>
+    </form>
+
+{% endblock %}
+
+{% block aside_block %}
+    <h4>Side part !</h4>
+    <img src="https://itproger.com/img/courses/x1609834198.jpg.pagespeed.ic.wqaTtd_e0w.webp" class="img-thumbnail">
+    <p>It's a great django website written without JS!</p>
+{% endblock %}

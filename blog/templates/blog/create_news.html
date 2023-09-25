@@ -1,0 +1,21 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}
+    {{title}}
+{% endblock %}
+
+{% block content %}
+    <h1>{{title}}</h1>
+    <form method="post" class="form-register auth">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-outline-warning" type="submit">{{btn_text}}</button>
+    </form>
+
+{% endblock %}
+
+{% block aside_block %}
+    <h4>Side part !</h4>
+    <img src="../pictures/chan.png" class="img-thumbnail">
+    <p>It's a great django website written without JS!</p>
+{% endblock %}

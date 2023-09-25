@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import User
-from PIL import Image
 # Create your models here.
 
 class Profile(models.Model):
@@ -14,11 +13,6 @@ class Profile(models.Model):
         super().save()
 
         image = Image.open(self.img.path)
-
-        if image.height > 256 or image.width > 256:
-            resize = (256, 256)
-            image.thumbnail(resize)
-            image.save(self.img.path)
 
 
     class Meta:

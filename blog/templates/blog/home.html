@@ -10,7 +10,7 @@
     {% for post in news %}
         <div class="alert alert-dark">
             <h3>{{ post.title }}</h3>
-            <p>{{ post.text|safe }}</p>
+            <p>{{ post.text|truncatechars:200|striptags }}</p>
             <div class="row">
                 <div>
                     <img src="{{ post.author.profile.img.url }}" alt="{{ post.author }}" class="user_images" >
@@ -27,6 +27,17 @@
             <a href="{% url 'news-detail' post.id %}" class="btn btn-outline-warning">Read full </a>
         </div>
     {% endfor %}
+
+    {% if is_paginated %}
+        {% if page_obj.has_previous %}
+            <a href="{% url 'home-page' %}" class="btn btn-outline-warning">Main</a>
+            <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-outline-warning">Previous</a>
+        {% endif %}
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}" class="btn btn-outline-warning">Next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}" class="btn btn-outline-warning">Last</a>
+        {% endif %}
+    {% endif %}
 {% endblock %}
 
 {% block aside_block %}

@@ -9,7 +9,7 @@
     <h1>{{ title }}</h1>
         <div class="alert alert-dark">
             <h3>{{ post.title }}</h3>
-            <p>{{ post.text }}</p>
+            <p>{{ post.text|safe }}</p>
             <div class="row">
                 <div>
                     <img src="{{ post.author.profile.img.url }}" alt="{{ post.author }}" class="user_images" >

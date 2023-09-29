@@ -5,7 +5,8 @@
 {% endblock %}
 
 {% block content %}
-
+    <h2>All posts from user {{ view.kwargs.username }}</h2>
+    <h3>Num of posts: {{ page_obj.paginator.count }}</h3>
     <h1>{{ title }}</h1>
     {% for post in news %}
         <div class="alert alert-dark">

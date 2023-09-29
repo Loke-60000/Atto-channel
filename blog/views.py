@@ -1,4 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import (
+    render,
+    get_list_or_404
+)
+from django.contrib.auth.models import  User
 from .models import News
 from django.views.generic import (
     ListView,
@@ -30,6 +34,24 @@ class ShowNewsView(ListView):
         ctx['title'] = 'Main paage!!!'
         return ctx
 
+
+#implenment new profile base for @chan users! For test purposes base.html is used. PS. 4nmus
+class UserAllNewsView(ListView):
+    model = News
+    template_name = 'blog/news_user.html'
+    context_object_name = 'news'
+    #change later to 5 approximately! PS. Your 4nmus
+    paginate_by = 5
+
+    def get_queryset(self):
+        user = get_list_or_404(User, username=self.kwargs['username'])
+        return News.objects.filter(author=user).order_by('-date')
+
+    def get_context_data(self, **kwargs):
+        ctx = super(UserAllNewsView, self).get_context_data(**kwargs)
+
+        ctx['title'] = 'Author page'
+        return ctx
 
 class NewsDetailView(DetailView):
     model = News

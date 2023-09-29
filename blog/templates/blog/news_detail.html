@@ -17,7 +17,7 @@
                 <div class="mt-2">
                     <span class="text-muted" >published: {{ post.date|date:"d E Y H:i" }}</span>
                     {% if post.author %}
-                        <p>Author: {{ post.author }}</p>
+                        <p>Author: <a href="{% url 'user-news' object.author %}">{{ object.author }}</a></p>
                     {% else %}
                         <p>Author: <b>Anonymous</b>, date: {{ post.date|date }}</p>
                     {% endif %}

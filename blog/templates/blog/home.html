@@ -37,6 +37,8 @@
         {% for page in page_obj.paginator.page_range %}
             {% if page == page_obj.number %}
                 <button class="btn btn-warning">{{ page }}</button>
+            {% elif page > page_obj.number|add:'-3' and page < page_obj.number|add:'3' %}
+                <a href="?page={{ page }}" class="btn btn--outline-warning">{{ page }}</a>
             {% endif %}
         {% endfor %}
 

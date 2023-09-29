@@ -33,6 +33,13 @@
             <a href="{% url 'home-page' %}" class="btn btn-outline-warning">Main</a>
             <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-outline-warning">Previous</a>
         {% endif %}
+
+        {% for page in page_obj.paginator.page_range %}
+            {% if page == page_obj.number %}
+                <button class="btn btn-warning">{{ page }}</button>
+            {% endif %}
+        {% endfor %}
+
         {% if page_obj.has_next %}
             <a href="?page={{ page_obj.next_page_number }}" class="btn btn-outline-warning">Next</a>
             <a href="?page={{ page_obj.paginator.num_pages }}" class="btn btn-outline-warning">Last</a>

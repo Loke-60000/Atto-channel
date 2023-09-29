@@ -23,7 +23,7 @@ class ShowNewsView(ListView):
     context_object_name = 'news'
     ordering = ['-date']
     #change later to 5 approximately! PS. Your 4nmus
-    paginate_by = 2
+    paginate_by = 1
     def get_context_data(self, **kwargs):
         ctx = super(ShowNewsView, self).get_context_data(**kwargs)
 

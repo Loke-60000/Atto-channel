@@ -44,7 +44,8 @@ class UserAllNewsView(ListView):
     paginate_by = 5
 
     def get_queryset(self):
-        user = get_list_or_404(User, username=self.kwargs['username'])
+        #idk why it doesn't work like it should without[0](i mean i know cause it says list or 404). In documentation it should return normal id as int not a list. PS. 4nmus
+        user = get_list_or_404(User, username=self.kwargs['username'])[0]
         return News.objects.filter(author=user).order_by('-date')
 
     def get_context_data(self, **kwargs):

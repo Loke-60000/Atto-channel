@@ -26,12 +26,10 @@ class ShowNewsView(ListView):
     template_name = 'blog/home.html'
     context_object_name = 'news'
     ordering = ['-date']
-    #change later to 5 approximately! PS. Your 4nmus
-    paginate_by = 1
+    paginate_by = 5
     def get_context_data(self, **kwargs):
         ctx = super(ShowNewsView, self).get_context_data(**kwargs)
-
-        ctx['title'] = 'Main paage!!!'
+        ctx['title'] = 'Main board'
         return ctx
 
 
@@ -44,13 +42,11 @@ class UserAllNewsView(ListView):
     paginate_by = 5
 
     def get_queryset(self):
-        #idk why it doesn't work like it should without[0](i mean i know cause it says list or 404). In documentation it should return normal id as int not a list. PS. 4nmus
         user = get_list_or_404(User, username=self.kwargs['username'])[0]
         return News.objects.filter(author=user).order_by('-date')
 
     def get_context_data(self, **kwargs):
         ctx = super(UserAllNewsView, self).get_context_data(**kwargs)
-
         ctx['title'] = 'Author page'
         return ctx
 
@@ -84,7 +80,6 @@ class UpdateNewsView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
     def get_context_data(self, **kwards):
         ctx = super(UpdateNewsView, self).get_context_data(**kwards)
-
         ctx['title'] = 'Update article'
         ctx['btn_text'] = 'Update'
         return ctx

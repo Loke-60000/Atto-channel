@@ -12,24 +12,18 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">@channel</a>
-
+        <a class="navbar-brand" href="{% url 'home-page' %}">@channel</a>
         <div class="collapse navbar-collapse" id="navbarsExample09">
-
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="{% url 'home-page' %}">Main</a>
-            </li>
             <li class="nav-item">
               <a class="nav-link" href="{% url 'contacti' %}">Discussions</a>
             </li>
           </ul>
             {% if not user.is_authenticated %}
-            <a href="{% url 'reg' %}"><button class="btn btn-outline-warning">Register</button></a>
+            <a href="{% url 'reg' %}"  class="ml-2"><button class="btn btn-outline-warning">Register</button></a>
             <a href="{% url 'user' %}" class="ml-2"><button class="btn btn-outline-info">Login</button></a>
             {% else %}
             <a href="{% url 'news-add' %}"><button class="btn btn-outline-secondary">add article</button></a>
-
             <a href="{% url 'profile' %}"><button class="btn btn-outline-warning">{{ user.username }}</button></a>
             <a href="{% url 'profile' %}"><button class="btn btn-outline-warning">Profile</button></a>
             <a href="{% url 'exit' %}" class="ml-2"><button class="btn btn-outline-info">Log out</button></a>
@@ -37,9 +31,10 @@
         </div>
       </div>
     </nav>
+
     <div class="container mt-5">
-        <div class="row">
-            <div class="col-md-8">
+            <div class="col">
+                <!-- For messages from the system (user added/deleted/etc)-->
                 {% if messages %}
                     {% for mess in messages %}
                         <div class="alert alert-success">{{ mess }}</div>
@@ -48,13 +43,6 @@
                 {% block content %}
                 {% endblock %}
             </div>
-
-            <aside class="col-md-4">
-                <h3>Side part</h3>
-                {% block aside_block %}
-                {% endblock %}
-            </aside>
-        </div>
     </div>
 
     <footer class="pt-4 my-md-5 pt-md-5 border-top">
@@ -93,5 +81,6 @@
       </div>
     </div>
   </footer>
+
 </body>
 </html>

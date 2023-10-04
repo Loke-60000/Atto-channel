@@ -23,7 +23,7 @@
             <a href="{% url 'reg' %}"  class="ml-2"><button class="btn btn-outline-warning">Register</button></a>
             <a href="{% url 'user' %}" class="ml-2"><button class="btn btn-outline-info">Login</button></a>
             {% else %}
-            <a href="{% url 'news-add' %}"><button class="btn btn-outline-secondary">add article</button></a>
+            <a href="{% url 'news-add' %}"><button class="btn btn-outline-secondary">add post</button></a>
             <a href="{% url 'profile' %}"><button class="btn btn-outline-warning">{{ user.username }}</button></a>
             <a href="{% url 'profile' %}"><button class="btn btn-outline-warning">Profile</button></a>
             <a href="{% url 'exit' %}" class="ml-2"><button class="btn btn-outline-info">Log out</button></a>

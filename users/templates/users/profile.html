@@ -6,6 +6,7 @@
 
 {% block content %}
     <h1>Profile page</h1>
+    <h3>Num of posts: {{ page_obj.paginator.count }}</h3>
     <div class="d-flex text-body-secondary pt-3">
       <img class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="64" height="64" src="{{ user.profile.img.url}}">
       <p class="pb-3 mb-0 small lh-sm border-bottom">
@@ -15,6 +16,8 @@
         {% else %}
         <b>Email: hidden by CERN</b>
         {% endif %}
+        <br>
+        <b>Rank: {{ pass }}</b>
       </p>
     </div>
     <form method="post" enctype="multipart/form-data" class="form-register mt-4">
@@ -25,8 +28,3 @@
     </form>
 {% endblock %}
 
-{% block aside_block %}
-    <h4>Side part !</h4>
-    <img src="/pictures/chan.png" class="img-thumbnail">
-    <p>It's a great django website written without JS!</p>
-{% endblock %}

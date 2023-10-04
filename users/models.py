@@ -19,8 +19,20 @@ class Profile(models.Model):
             resize = (256, 256)
             image.thumbnail(resize)
             image.save(self.img.path)
-
-
     class Meta:
         verbose_name = 'Profile'
         verbose_name_plural = "Profiles"
+
+class Rank(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    #Implement different ranks later! PS. Your 4nmus
+    rank = models.CharField(max_length=30, default='New user')
+
+    def __str__(self):
+        return f'Profile {self.user.username}'
+
+    def save(self, *args, **kwargs):
+        super().save()
+    class Meta:
+        verbose_name = 'Rank'
+        verbose_name_plural = "Ranks"

@@ -19,6 +19,7 @@
                         <span class="text-muted" >published: {{ post.date|date:"d E Y H:i" }}</span>
                         {% if post.author %}
                             <p>Author: <a href="{% url 'user-news' post.author %}">{{ post.author }}</a></p>
+                            <p>Rank: {{ post.author.rank.rank}}</p>
                         {% else %}
                             <p>Author: <b>Anonymous</b>, date: {{ post.date|date }}</p>
                         {% endif %}

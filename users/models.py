@@ -23,16 +23,32 @@ class Profile(models.Model):
         verbose_name = 'Profile'
         verbose_name_plural = "Profiles"
 
+
 class Rank(models.Model):
+    NW = "NEW"
+    AR = "ATTO_CHANNELER "
+    WB = "Weeb"
+    GW = "Grand Weeb"
+    AA = "ADMIN"
+    RANK_CHOICES = [
+        (NW, "New"),
+        (AR, "Atto channeler"),
+        (WB, "Weeb"),
+        (GW, "Grand weeb"),
+        (AA, "@Admin@"),
+    ]
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    #Implement different ranks later! PS. Your 4nmus
-    rank = models.CharField(max_length=30, default='New user')
+    rank = models.CharField(max_length=15,choices=RANK_CHOICES, default=NW)
 
     def __str__(self):
         return f'Profile {self.user.username}'
 
     def save(self, *args, **kwargs):
         super().save()
+
+    def is_upperclass(self):
+        return self.RANK_CHOICES in {self.NW, self.GW}
+
     class Meta:
         verbose_name = 'Rank'
         verbose_name_plural = "Ranks"

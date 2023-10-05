@@ -25,20 +25,20 @@ class Profile(models.Model):
 
 
 class Rank(models.Model):
-    NW = "NEW"
-    AR = "ATTO_CHANNELER "
+    NW = "New"
+    AR = "ATTO_CHANNELER"
     WB = "Weeb"
-    GW = "Grand Weeb"
-    AA = "ADMIN"
+    GW = "-Grand Weeb-"
+    AA = "@ADMIN@"
     RANK_CHOICES = [
-        (NW, "New"),
-        (AR, "Atto channeler"),
-        (WB, "Weeb"),
-        (GW, "Grand weeb"),
-        (AA, "@Admin@"),
+        (NW, "NW"),
+        (AR, "AR"),
+        (WB, "WB"),
+        (GW, "GW"),
+        (AA, "AA"),
     ]
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    rank = models.CharField(max_length=15,choices=RANK_CHOICES, default=NW)
+    rank = models.CharField(max_length=15, choices=RANK_CHOICES, default=NW)
 
     def __str__(self):
         return f'Profile {self.user.username}'

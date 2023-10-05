@@ -29,3 +29,16 @@ class News(models.Model):
         verbose_name = 'New'
         verbose_name_plural = 'News'
 # Create your models here.
+
+class Comments(models.Model):
+    post = models.OneToOneField(News, on_delete=models.CASCADE)
+    comment = models.TextField("Text")
+
+    def __str__(self):
+        return f"Comment {self.news.title}"
+
+    def save(self, *args, **kwargs):
+        super().save()
+    class Meta:
+        verbose_name = 'Comment'
+        verbose_name_plural = "Comments"

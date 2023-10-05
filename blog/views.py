@@ -4,6 +4,7 @@ from django.shortcuts import (
 )
 from django.contrib.auth.models import User
 from .models import News
+from .models import Comments
 from django.views.generic import (
     ListView,
     DetailView,
@@ -65,7 +66,6 @@ class NewsDetailView(DetailView):
 class UpdateNewsView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = News
     template_name = 'blog/create_news.html'
-
     fields = ['title', 'text']
 
     def test_func(self):
@@ -99,7 +99,6 @@ class DeleteNewsView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 class CreateNewsView(LoginRequiredMixin, CreateView):
     model = News
     template_name = 'blog/create_news.html'
-
     fields = ['title', 'text']
 
     def get_context_data(self, **kwards):
@@ -112,6 +111,18 @@ class CreateNewsView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
+
+class CommentNewsView(LoginRequiredMixin, CreateView):
+    model = Comments
+    template_name = 'blog/create_news.html'
+    fields = ['comment']
+
+    def get_context_data(self, **kwards):
+        ctx = super(CommentNewsView, self).get_context_data(**kwards)
+        ctx['title'] = 'Write comment'
+        ctx['btn_text'] = 'Post'
+        return ctx
+
 
 def contacti(request):
     return render(request, 'blog/contacti.html', {'title': 'Just a page!'})

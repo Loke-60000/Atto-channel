@@ -4,7 +4,7 @@ from django.shortcuts import (
 )
 from django.contrib.auth.models import User
 from .models import News
-from .models import Comments
+
 from django.views.generic import (
     ListView,
     DetailView,
@@ -114,16 +114,6 @@ class CreateNewsView(LoginRequiredMixin, CreateView):
         form.instance.author = self.request.user
         return super().form_valid(form)
 
-class CommentNewsView(LoginRequiredMixin, CreateView):
-    model = Comments
-    template_name = 'blog/create_news.html'
-    fields = ['comment']
-
-    def get_context_data(self, **kwards):
-        ctx = super(CommentNewsView, self).get_context_data(**kwards)
-        ctx['title'] = 'Write comment'
-        ctx['btn_text'] = 'Post'
-        return ctx
 
 
 def contacti(request):

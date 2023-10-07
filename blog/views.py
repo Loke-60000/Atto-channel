@@ -13,6 +13,8 @@ from django.views.generic import (
     DeleteView
 )
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from .models import News
+from django.shortcuts import render, get_object_or_404
 
 def home(request):
     data = {
@@ -30,7 +32,7 @@ class ShowNewsView(ListView):
     paginate_by = 5
     def get_context_data(self, **kwargs):
         ctx = super(ShowNewsView, self).get_context_data(**kwargs)
-        ctx['title'] = 'Main board'
+        ctx['title'] = 'First thread'
         return ctx
 
 
@@ -128,3 +130,6 @@ def contacti(request):
     return render(request, 'blog/contacti.html', {'title': 'Just a page!'})
 
 # Create your views here.
+
+
+

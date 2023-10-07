@@ -7,6 +7,7 @@
 {% block content %}
     <div class="container bg-light">
         <h1 class="text-center">{{ title }}</h1>
+        <h2 class="text-center"><a href="{% url 'news-add' %}"><button class="btn btn-outline-secondary">add comment</button></a></h2>
         {% for post in news %}
             <div class="alert alert-dark">
                 <h3>{{ post.title }}</h3>

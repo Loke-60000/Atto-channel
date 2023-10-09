@@ -8,18 +8,7 @@ class News(models.Model):
     title = models.CharField('Name of article', max_length=100, unique=True)
     text = models.TextField("Text")
     date = models.DateTimeField('date', default=timezone.now)
-    author = models.ForeignKey(User, verbose_name='author', on_delete=models.CASCADE, default = get_list_or_404(User, username='anon')[0])
-    # temp decision for implementing anon users
-    #remove default later!
-
-    views = models.IntegerField("Views", default=1)
-    sizes = (
-        ("A", 'Anonymous'),
-        ("H", 'Hybrid'),
-        ("P", 'Public'),
-    )
-
-    type_of_message = models.CharField(max_length=1, choices=sizes, default='P')
+    author = models.ForeignKey(User, verbose_name='author', on_delete=models.CASCADE, blank=True, null=True)
 
     def get_absolute_url(self):
         return reverse('news-detail', kwargs={'pk': self.pk})

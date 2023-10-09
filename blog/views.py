@@ -98,7 +98,7 @@ class DeleteNewsView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
             return True
         return False
 
-# tempt decision for implementing anon users
+# temp decision for implementing anon users
 # LoginRequiredMixin
 class CreateNewsView(CreateView):
     model = News
@@ -113,7 +113,7 @@ class CreateNewsView(CreateView):
         return ctx
 
     def form_valid(self, form):
-        # tempt decision for implementing anon users
+        # temp decision for implementing anon users
         # form.instance.author = self.request.user
         return super().form_valid(form)
 

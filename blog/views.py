@@ -2,7 +2,7 @@ from django.shortcuts import (
     render,
     get_list_or_404
 )
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, AnonymousUser
 from .models import News
 
 from django.views.generic import (
@@ -114,7 +114,9 @@ class CreateNewsView(CreateView):
 
     def form_valid(self, form):
         # temp decision for implementing anon users
-        # form.instance.author = self.request.user
+        if not isinstance(self.request.user, AnonymousUser):
+            form.instance.author = self.request.user
+
         return super().form_valid(form)
 
 

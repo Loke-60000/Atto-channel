@@ -1,14 +1,16 @@
 from django.db import models
 from django.utils import timezone
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, AnonymousUser
 from django.urls import reverse
+from django.shortcuts import get_list_or_404
 
 class News(models.Model):
     title = models.CharField('Name of article', max_length=100, unique=True)
     text = models.TextField("Text")
     date = models.DateTimeField('date', default=timezone.now)
-    author = models.ForeignKey(User, verbose_name='author', on_delete=models.CASCADE)
-    #on_delete=CASCADE to delete all articles affilated with user
+    author = models.ForeignKey(User, verbose_name='author', on_delete=models.CASCADE, default = get_list_or_404(User, username='anon')[0])
+    # temp decision for implementing anon users
+    #remove default later!
 
     views = models.IntegerField("Views", default=1)
     sizes = (

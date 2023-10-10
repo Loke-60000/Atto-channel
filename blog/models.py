@@ -7,13 +7,13 @@ from django.shortcuts import get_list_or_404
 class Threads(models.Model):
     title = models.CharField("Name of thread", max_length=100, unique=True)
     description = models.TextField("Description", max_length=500, null=True)
-    date = models.DateTimeField("date", default=timezone.now)
+    date = models.DateTimeField("Date", default=timezone.now)
 
     # only for registered users! (subject to change) Ps. 4nmus
     author = models.ForeignKey(User, verbose_name='author', on_delete=models.CASCADE)
 
     def get_absolute_url(self):
-        return reverse('threads-detail', kwargs={'pk': self.pk})
+        return reverse('threads-detail', 'news-add', kwargs={'pk': self.pk})
 
     def __str__(self):
         return f'{self.title}'

@@ -25,7 +25,8 @@ class ShowNewsView(ListView):
     paginate_by = 5
     def get_context_data(self, **kwargs):
         ctx = super(ShowNewsView, self).get_context_data(**kwargs)
-        ctx['title'] = 'First thread'
+        ctx['title'] = 'All comments. Search thread/1,2,3.. to view threads.'
+
         return ctx
 
 
@@ -102,8 +103,7 @@ class CreateNewsView(CreateView):
 
     def get_context_data(self, **kwards):
         ctx = super(CreateNewsView, self).get_context_data(**kwards)
-
-        ctx['title'] = 'Add article'
+        ctx['title'] = 'Add comment'
         ctx['btn_text'] = 'Add'
         return ctx
 
@@ -111,6 +111,8 @@ class CreateNewsView(CreateView):
         # temp decision for implementing anon users
         if not isinstance(self.request.user, AnonymousUser):
             form.instance.author = self.request.user
+        current_thread = Threads.objects.get(pk=self.kwargs['pk'])
+        form.instance.thread = current_thread
 
         return super().form_valid(form)
 
@@ -119,10 +121,12 @@ class ShowThreadsView(ListView):
     model = Threads
     template_name = 'blog/main.html'
     context_object_name = 'threads'
+
     def get_context_data(self, **kwargs):
         ctx = super(ShowThreadsView, self).get_context_data(**kwargs)
         ctx['title'] = 'Popular threads!'
         return ctx
+
 
 #For testing! Change to ↑↑↑ later! Ps. 4nmus
 def threads(request):
@@ -133,7 +137,7 @@ def threads(request):
     return render(request, 'blog/main.html', data)
 
 
-class ThreadsDetailView( TemplateView):
+class ThreadsDetailView(TemplateView):
     model = Threads
     # to change!
     template_name = 'blog/home.html'

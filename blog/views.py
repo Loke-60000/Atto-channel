@@ -13,16 +13,8 @@ from django.views.generic import (
     DeleteView
 )
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from .models import News
+from .models import News, Threads
 from django.shortcuts import render, get_object_or_404
-
-def home(request):
-    data = {
-        'news': News.objects.all(),
-        'title': 'Main!'
-    }
-    return render(request, 'blog/home.html', data)
-
 
 class ShowNewsView(ListView):
     model = News
@@ -100,6 +92,8 @@ class DeleteNewsView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
 # temp decision for implementing anon users
 # LoginRequiredMixin
+
+
 class CreateNewsView(CreateView):
     model = News
     template_name = 'blog/create_news.html'
@@ -120,7 +114,25 @@ class CreateNewsView(CreateView):
         return super().form_valid(form)
 
 
+class ShowThreadsView(ListView):
+    model = Threads
+    template_name = 'blog/main.html'
+    context_object_name = 'threads'
+    def get_context_data(self, **kwargs):
+        ctx = super(ShowThreadsView, self).get_context_data(**kwargs)
+        ctx['title'] = 'Popular threads!'
+        return ctx
 
+#For testing! Change to ↑↑↑ later! Ps. 4nmus
+def threads(request):
+    data = {
+        'threads': Threads.objects.all(),
+        'title': 'Popular threads!'
+    }
+    return render(request, 'blog/main.html', data)
+
+
+# change!
 def contacti(request):
     return render(request, 'blog/contacti.html', {'title': 'Just a page!'})
 

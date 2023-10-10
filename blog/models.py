@@ -4,12 +4,34 @@ from django.contrib.auth.models import User, AnonymousUser
 from django.urls import reverse
 from django.shortcuts import get_list_or_404
 
+class Threads(models.Model):
+    title = models.CharField("Name of thread", max_length=100, unique=True)
+    description = models.TextField("Description", max_length= 500, null=True)
+    date = models.DateTimeField("date", default=timezone.now)
+
+    # only for registered users! (subject to change) Ps. 4nmus
+    author = models.ForeignKey(User, verbose_name='author', on_delete=models.CASCADE)
+
+    #for thread ids
+    # def get_absolute_url(self):
+    #     return reverse('threads-detail', kwargs={'pk': self.pk})
+
+    def __str__(self):
+        return f'{self.title}'
+
+    class Meta:
+        verbose_name = 'Thread'
+        verbose_name_plural = 'Threads'
+
+
 class News(models.Model):
     title = models.CharField('Name of article', max_length=100, unique=True)
     text = models.TextField("Text")
     date = models.DateTimeField('date', default=timezone.now)
     author = models.ForeignKey(User, verbose_name='author', on_delete=models.CASCADE,  null=True)
 
+    # Chagne null=True later! Ps. 4nmus
+    thread = models.ForeignKey(Threads, verbose_name='thread', on_delete=models.CASCADE, null=True)
     def get_absolute_url(self):
         return reverse('news-detail', kwargs={'pk': self.pk})
 
@@ -19,4 +41,5 @@ class News(models.Model):
     class Meta:
         verbose_name = 'New'
         verbose_name_plural = 'News'
+
 # Create your models here.

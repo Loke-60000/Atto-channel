@@ -75,28 +75,22 @@
   <div class="container center">
     <div class="Channel"><h1>@Channel</h1></div>
     <div class="popular">
-        <div class="header">❏ Popular</div>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Amet nisl purus in mollis nunc sed id semper. Sed sed risus pretium quam vulputate dignissim. Lectus vestibulum mattis ullamcorper velit. Luctus accumsan tortor posuere ac. Eleifend mi in nulla posuere sollicitudin. Nisi quis eleifend quam adipiscing vitae proin. Aliquet sagittis id consectetur purus ut faucibus pulvinar elementum integer. Sit amet nulla facilisi morbi. In mollis nunc sed id semper. Quis lectus nulla at volutpat.</p>
+        {% for thread in threads %}
+        {% if thread.title == "Science" %}
+        <div class="header">❏ {{ thread.title }}</div>
+        <p>{{ thread.description }}</p>
+        {% endif %}
+        {% endfor %}
     </div>
     <div class="thread">
         <div class="header">❏ Popular</div>
         <div class="threads">
+            {% for thread in threads %}
             <div class="element">
-                <div class="header-mini">❏ Popular</div>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Amet nisl purus in mollis nunc sed id semper. Sed sed risus pretium quam vulputate dignissim. Lectus vestibulum mattis ullamcorper velit. Luctus accumsan tortor posuere ac. Eleifend mi in nulla posuere sollicitudin. Nisi quis eleifend quam adipiscing vitae proin. Aliquet sagittis id consectetur purus ut faucibus pulvinar elementum integer. Sit amet nulla facilisi morbi. In mollis nunc sed id semper. Quis lectus nulla at volutpat.</p>
+                <div class="header-mini">❏ <b>{{ thread.title }}</b></div>
+                        <p>{{ thread.description }}</p>
             </div>
-            <div class="element">
-                <div class="header-mini">❏ Popular</div>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Amet nisl purus in mollis nunc sed id semper. Sed sed risus pretium quam vulputate dignissim. Lectus vestibulum mattis ullamcorper velit. Luctus accumsan tortor posuere ac. Eleifend mi in nulla posuere sollicitudin. Nisi quis eleifend quam adipiscing vitae proin. Aliquet sagittis id consectetur purus ut faucibus pulvinar elementum integer. Sit amet nulla facilisi morbi. In mollis nunc sed id semper. Quis lectus nulla at volutpat.</p>
-            </div>
-            <div class="element">
-                <div class="header-mini">❏ Popular</div>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Amet nisl purus in mollis nunc sed id semper. Sed sed risus pretium quam vulputate dignissim. Lectus vestibulum mattis ullamcorper velit. Luctus accumsan tortor posuere ac. Eleifend mi in nulla posuere sollicitudin. Nisi quis eleifend quam adipiscing vitae proin. Aliquet sagittis id consectetur purus ut faucibus pulvinar elementum integer. Sit amet nulla facilisi morbi. In mollis nunc sed id semper. Quis lectus nulla at volutpat.</p>
-            </div>
-            <div class="element">
-                <div class="header-mini">❏ Popular</div>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Amet nisl purus in mollis nunc sed id semper. Sed sed risus pretium quam vulputate dignissim. Lectus vestibulum mattis ullamcorper velit. Luctus accumsan tortor posuere ac. Eleifend mi in nulla posuere sollicitudin. Nisi quis eleifend quam adipiscing vitae proin. Aliquet sagittis id consectetur purus ut faucibus pulvinar elementum integer. Sit amet nulla facilisi morbi. In mollis nunc sed id semper. Quis lectus nulla at volutpat.</p>
-            </div>
+            {% endfor %}
         </div>
     </div>
 

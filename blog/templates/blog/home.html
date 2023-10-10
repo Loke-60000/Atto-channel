@@ -24,7 +24,7 @@
                             <p>Author: <a href="{% url 'user-news' post.author %}">{{ post.author }}</a></p>
                             <p>Rank: {{ post.author.rank.rank}}</p>
                         {% else %}
-                            <p>Author: <b>Anonymous</b>, date: {{ post.date|date }}</p>
+                            <p>Author: <b>Anonymous</b></p>
                         {% endif %}
                     </div>
                 </div>

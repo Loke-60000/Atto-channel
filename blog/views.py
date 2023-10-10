@@ -132,6 +132,19 @@ def threads(request):
     return render(request, 'blog/main.html', data)
 
 
+class ThreadsDetailView(DetailView):
+    model = Threads
+    # to change!
+    template_name = 'blog/home.html'
+    context_object_name = 'post'
+
+    def get_context_data(self, **kwards):
+        ctx = super(ThreadsDetailView, self).get_context_data(**kwards)
+
+        ctx['title'] = Threads.objects.get(pk=self.kwargs['pk'])
+        return ctx
+
+
 # change!
 def contacti(request):
     return render(request, 'blog/contacti.html', {'title': 'Just a page!'})

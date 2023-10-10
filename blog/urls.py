@@ -12,7 +12,7 @@ urlpatterns = [
 
 
     #to change!
-    path('threads/<int:pk>', views.Threads, name='threads-detail'),
+    path('threads/<int:pk>', views.ThreadsDetailView.as_view(), name='threads-detail'),
     path('threads/', views.threads, name='threads'),
     path('conversations', views.contacti, name='conversations'),
     path('about', views.contacti, name='contacti'),

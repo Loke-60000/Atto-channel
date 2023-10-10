@@ -11,7 +11,7 @@ urlpatterns = [
 
 
     #to change/check!
-    path('threads/add/<int:pk>', views.CreateNewsView.as_view(), name='news-add'),
+    path('threads/<int:pk>/add', views.CreateNewsView.as_view(), name='comment-add'),
     path('threads/<int:pk>', views.ThreadsDetailView.as_view(), name='threads-detail'),
     path('threads/', views.threads, name='threads'),
     path('conversations', views.contacti, name='conversations'),

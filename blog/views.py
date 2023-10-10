@@ -99,6 +99,7 @@ class DeleteNewsView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 class CreateNewsView(CreateView):
     model = News
     template_name = 'blog/create_news.html'
+    context_object_name = 'news'
     fields = ['title', 'text']
 
     def get_context_data(self, **kwards):
@@ -140,7 +141,7 @@ def threads(request):
 class ThreadsDetailView(TemplateView):
     model = Threads
     # to change!
-    template_name = 'blog/home.html'
+    template_name = 'blog/thread.html'
     context_object_name = 'post'
 
     def get_context_data(self, **kwards):

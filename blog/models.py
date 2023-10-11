@@ -10,7 +10,7 @@ class Threads(models.Model):
     description = models.TextField("Description", max_length=500, null=True)
     date = models.DateTimeField("Date", default=timezone.now)
     # only for registered users! (subject to change) Ps. 4nmus
-    author = models.ForeignKey(User, verbose_name='author', on_delete=models.CASCADE)
+    author = models.ForeignKey(User, verbose_name='author', on_delete=models.CASCADE, null=False)
 
     def get_absolute_url(self):
         return reverse('comment-add', kwargs={'pk': self.pk})

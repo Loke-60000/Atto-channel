@@ -3,7 +3,7 @@ from django.shortcuts import (
     get_list_or_404
 )
 from django.contrib.auth.models import User, AnonymousUser
-from .models import News
+import random
 
 from django.views.generic import (
     ListView,
@@ -126,11 +126,16 @@ class ShowThreadsView(ListView):
     def get_context_data(self, **kwargs):
         ctx = super(ShowThreadsView, self).get_context_data(**kwargs)
         ctx['title'] = 'Popular threads!'
+
+        # implement shuffle ? Subject to change. Ps 4nmus
+        ctx['threads'] = Threads.objects.all()[0:4]
+
         return ctx
 
 
 #For testing! Change to ↑↑↑ later! Ps. 4nmus
 def threads(request):
+
     data = {
         'threads': Threads.objects.all(),
         'title': 'Popular threads!'

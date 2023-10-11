@@ -87,7 +87,7 @@
         <div class="threads">
             {% for thread in threads %}
             <div class="element">
-                <div class="header-mini">❏ <b>{{ thread.title }}</b></div>
+                <div class="header-mini"><a href="{% url 'threads-detail' thread.id %}">❏ <b>{{ thread.title }}</b></a></div>
                         <p>{{ thread.description }}</p>
             </div>
             {% endfor %}

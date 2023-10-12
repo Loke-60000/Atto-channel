@@ -6,7 +6,7 @@
 
 {% block content %}
     <h1>Profile page</h1>
-    <h3>Num of posts: {{ page_obj.paginator.count }}</h3>
+    <h3><a href="{% url 'user-comment' user.username %}">See all posts</a></h3>
     <div class="d-flex text-body-secondary pt-3">
       <img class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="64" height="64" src="{{ user.profile.img.url}}">
       <p class="pb-3 mb-0 small lh-sm border-bottom">

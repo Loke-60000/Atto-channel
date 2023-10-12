@@ -12,7 +12,9 @@
             <p>{{ post.text|safe }}</p>
             <div class="row">
                 <div>
+                    {% if post.author.profile.img.url %}
                     <img src="{{ post.author.profile.img.url }}" alt="{{ post.author }}" class="user_images" >
+                    {% endif %}
                 </div>
                 <div class="mt-2">
                     <span class="text-muted" >published: {{ post.date|date:"d E Y H:i" }}</span>

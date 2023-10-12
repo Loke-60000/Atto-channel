@@ -1,0 +1,39 @@
+{% extends 'blog/main.html' %}
+
+{% block content %}
+    <div class="thread">
+        <div class="header" whose eyes are those eyes?>❏ Popular</div>
+        <div class="threads">
+            {% for thread in page_obj %}
+            <div class="element">
+                <div class="header-mini"><a href="{% url 'threads-detail' thread.id %}">❏ <b>{{ thread.title }}</b></a></div>
+                <p>{{ thread.description }}</p>
+            </div>
+            {% endfor %}
+        </div>
+
+        {% if is_paginated %}
+
+            {% if page_obj.has_previous %}
+                <a href="{% url 'threads' %}" class="btn">Main</button></a>
+                <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-outline-warning">Previous</a>
+            {% endif %}
+
+
+            {% for page in page_obj.paginator.page_range %}
+                {% if page == page_obj.number %}
+                    <button class="btn btn-warning">{{ page }}</button>
+                {% elif page > page_obj.number|add:'-3' and page < page_obj.number|add:'3' %}
+                    <a href="?page={{ page }}" class="btn btn--outline-warning">{{ page }}</a>
+                {% endif %}
+            {% endfor %}
+
+
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}" class="btn btn-outline-warning">Next</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}" class="btn btn-outline-warning">Last</a>
+            {% endif %}
+
+        {% endif %}
+    </div>
+{% endblock %}

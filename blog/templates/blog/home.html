@@ -8,18 +8,18 @@
     <div class="container bg-light">
         <h1 class="text-center">{{ title }}</h1>
 
-        <h2 class="text-center"><a href="{% url 'comment-add' 1 %}"><button class="btn btn-outline-secondary">add comment</button></a></h2>
+        <h2 class="text-center"><a href="{% url 'comment-add' post.id %}"><button>add comment</button></a></h2>
         {% for post in news %}
-            <div class="alert alert-dark">
+            <div class="post">
                 <h3>{{ post.title }}</h3>
                 <p>{{ post.text|truncatechars:200|striptags }}</p>
-                <div class="row">
+                <div >
                     <div>
                         {% if post.author %}
                         <img src="{{ post.author.profile.img.url }}" alt="{{ post.author }}" class="user_images" >
                         {% endif %}
                     </div>
-                    <div class="mt-2">
+                    <div>
                         <span class="text-muted" >published: {{ post.date|date:"d E Y H:i" }}</span>
                         {% if post.author %}
                             <p>Author: <a href="{% url 'user-comment' post.author %}">{{ post.author }}</a></p>
@@ -29,8 +29,8 @@
                         {% endif %}
                     </div>
                 </div>
-                <a href="{% url 'comment-detail' post.id %}" class="btn btn-outline-warning">Read full </a>
-                <br>
+                <a href="{% url 'comment-detail' post.id %}"><button>Read full</button></a>
+
             </div>
         {% endfor %}
 

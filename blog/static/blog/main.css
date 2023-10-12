@@ -22,7 +22,7 @@ body {
 }
 
 .form-register .helptext{color: #b7b7b7}
-.form-register ul.errorlisst{color: #ca5858; font-weight: bold;}
+.form-register ul.errorlist{color: #ca5858; font-weight: bold;}
 footer{
     width: 70%;
     margin-left: 15%;

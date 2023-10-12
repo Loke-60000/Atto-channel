@@ -11,15 +11,12 @@
       .container{
        background: #fff;
        margin: 4% 7%;
-       height: 1000px;
+       height: 1100px;
        display: flex;
        flex-direction: column;
        padding: 0% 10%;
       }
 
-      .center{
-
-      }
       .Channel{
          margin-top: 5%;
          background: #33ccff;
@@ -69,34 +66,35 @@
         color: #33ccff;
         font-size: 80%;
       }
+
+      a{
+         text-decoration: none;
+      }
+
+      .btn{
+      background-color: #e699ff;
+      color: white;
+      font-size: 15px;
+      text-align: center;
+      padding: 10px;
+      }
+
     </style>
 </head>
 <body>
   <div class="container center">
-    <div class="Channel"><h1>@Channel</h1></div>
+    <a href="{% url 'threads' %}"><div class="Channel"><h1>@Channel</h1></div></a>
     <div class="popular">
-        {% for thread in threads %}
-        {% if thread.title == "Science" %}
+
         <a href="{% url 'contacti' %}"><div class="header">❏ About page</div></a>
         <p> This is a scientific forum so please provide references when proving your point of view.
         You can post anonymously, but you can also register. No logs (if not hacked) stored and no JS ( or maybe will be in case of open-source captcha) required.
         Questions? - click "About page". Oh, and don't spam, scam, etc.
         </p>
-        {% endif %}
-        {% endfor %}
-    </div>
-    <div class="thread">
-        <div class="header">❏ Popular</div>
-        <div class="threads">
-            {% for thread in threads %}
-            <div class="element">
-                <div class="header-mini"><a href="{% url 'threads-detail' thread.id %}">❏ <b>{{ thread.title }}</b></a></div>
-                        <p>{{ thread.description }}</p>
-            </div>
-            {% endfor %}
-        </div>
-    </div>
 
+    </div>
+    {% block content %}
+    {% endblock %}
   </div>
 </body>
 </html>

@@ -33,7 +33,7 @@ class ShowNewsView(ListView):
 #implenment new profile base for @chan users! For test purposes base.html is used. PS. 4nmus
 class UserAllNewsView(ListView):
     model = News
-    template_name = 'blog/news_user.html'
+    template_name = 'blog/comments_user.html'
     context_object_name = 'news'
     #change later to 5 approximately! PS. Your 4nmus
     paginate_by = 5
@@ -61,7 +61,7 @@ class NewsDetailView(DetailView):
 
 class UpdateNewsView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = News
-    template_name = 'blog/create_news.html'
+    template_name = 'blog/create_comment.html'
     fields = ['title', 'text']
 
     def test_func(self):
@@ -84,7 +84,7 @@ class UpdateNewsView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 class DeleteNewsView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = News
     success_url = '/'
-    template_name = 'blog/delete-news.html'
+    template_name = 'blog/delete-comment.html'
 
     def test_func(self):
         news = self.get_object()
@@ -98,7 +98,7 @@ class DeleteNewsView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
 class CreateNewsView(CreateView):
     model = News
-    template_name = 'blog/create_news.html'
+    template_name = 'blog/create_comment.html'
     context_object_name = 'news'
     fields = ['title', 'text']
 
@@ -120,15 +120,16 @@ class CreateNewsView(CreateView):
 
 class ShowThreadsView(ListView):
     model = Threads
-    template_name = 'blog/main.html'
+    template_name = 'blog/main-extended.html'
     context_object_name = 'threads'
-
+    paginate_by = 4
+    ordering = ['date']
     def get_context_data(self, **kwargs):
         ctx = super(ShowThreadsView, self).get_context_data(**kwargs)
         ctx['title'] = 'Popular threads!'
 
         # implement shuffle ? Subject to change. Ps 4nmus
-        ctx['threads'] = Threads.objects.all()[0:4]
+        ctx['threads'] = Threads.objects.all()
 
         return ctx
 

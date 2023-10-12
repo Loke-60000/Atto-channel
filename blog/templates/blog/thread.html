@@ -9,8 +9,9 @@
         <h1 class="text-center">{{ title }}</h1>
 
         <h2 class="text-center"><a href="{% url 'comment-add' title.id %}"><button class="btn btn-outline-secondary">add comment</button></a></h2>
+
         {% for post in news %}
-            <div class="alert alert-dark">
+            <div class="post">
                 <h3>{{ post.title }}</h3>
                 <p>{{ post.text|truncatechars:200|striptags }}</p>
                 <div class="row">

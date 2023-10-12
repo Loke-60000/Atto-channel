@@ -1,15 +1,78 @@
-{% extends 'blog/base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+      body{
+        background: #e699ff;
+      }
 
-{% block title %}
-    {{ title }}
-{% endblock %}
+      .container{
+       background: #fff;
+       margin: 4% 7%;
+       height: 1000px;
+       display: flex;
+       flex-direction: column;
+       padding: 0% 10%;
+      }
 
-{% block content %}
-    <h1>{{ title }}</h1>
-{% endblock %}
+      .Channel{
+         margin-top: 5%;
+         background: #33ccff;
+         width: 50%;
+         margin-left: 25%;
+         margin-right: 25%;
+         text-align: center;
+         color: white;
+         border: 2px solid black;
+         border-radius: 15px;
 
-{% block aside_block %}
-    <h4>Side part !</h4>
-    <img src="../pictures/chan.png" class="img-thumbnail">
-    <p>It's a great django website written without JS!</p>
-{% endblock %}
+      }
+
+      .thread{
+         margin-top: 2%;
+         background: #fff;
+         width: 100%;
+         color: black;
+
+
+      }
+
+      .header{
+        background: #33ccff;
+        color: white;
+      }
+
+      a{
+         text-decoration: none;
+         color: black;
+      }
+
+
+      a:hover {
+      color: #e699ff;
+      }
+
+    </style>
+</head>
+<body>
+  <div class="container center">
+    <div class="Channel"><h1>@Channel</h1></div>
+
+    <div class="thread">
+        <div class="header">❏ About ❏</div>
+            <p> This is a free-speech forum only for high-intellectual anons. Kindly ask different organizations to stay away!
+            Dr.Pepper enjoyers and World-layer drifters are welcome.
+            </p>
+    </div>
+
+
+    <div class="thread">
+        <div class="header">❏ DEVELOPMENT ❏</div>
+            <a href="https://github.com/4nmus"><h2>4nmus</h2></a>
+            <p> - ask any question on the github! (Or here using development thread)</p>
+        </div>
+    </div>
+</body>
+</html>

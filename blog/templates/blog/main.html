@@ -77,8 +77,11 @@
     <div class="popular">
         {% for thread in threads %}
         {% if thread.title == "Science" %}
-        <div class="header">❏ {{ thread.title }}</div>
-        <p>{{ thread.description }}</p>
+        <a href="{% url 'contacti' %}"><div class="header">❏ About page</div></a>
+        <p> This is a scientific forum so please provide references when proving your point of view.
+        You can post anonymously, but you can also register. No logs (if not hacked) stored and no JS ( or maybe will be in case of open-source captcha) required.
+        Questions? - click "About page". Oh, and don't spam, scam, etc.
+        </p>
         {% endif %}
         {% endfor %}
     </div>

@@ -17,7 +17,7 @@
                 <div class="mt-2">
                     <span class="text-muted" >published: {{ post.date|date:"d E Y H:i" }}</span>
                     {% if post.author %}
-                        <p>Author: <a href="{% url 'user-news' object.author %}">{{ object.author }}</a></p>
+                        <p>Author: <a href="{% url 'user-comment' object.author %}">{{ object.author }}</a></p>
                     {% else %}
                         <p>Author: <b>Anonymous</b>, date: {{ post.date|date }}</p>
                     {% endif %}
@@ -25,8 +25,8 @@
             </div>
             {% if object.author == user %}
             <hr>
-            <a href="{% url 'news-update' object.id %}" class="btn btn-info">Update</a>
-            <a href="{% url 'news-delete' object.id %}" class="btn btn-danger">Delete</a>
+            <a href="{% url 'comment-update' object.id %}" class="btn btn-info">Update</a>
+            <a href="{% url 'comment-delete' object.id %}" class="btn btn-danger">Delete</a>
             {% endif %}
         </div>
 {% endblock %}

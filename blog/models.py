@@ -33,7 +33,7 @@ class News(models.Model):
     thread = models.ForeignKey(Threads, verbose_name='thread', on_delete=models.CASCADE, null=True)
 
     def get_absolute_url(self):
-        return reverse('news-detail', kwargs={'pk': self.pk})
+        return reverse('comment-detail', kwargs={'pk': self.pk})
 
     def __str__(self):
         return f'{self.title}'

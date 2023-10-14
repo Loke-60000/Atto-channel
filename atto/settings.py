@@ -24,9 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-7_k2(9=amt$(3(3yr^o_7e1e3#kr%buo@i-gcx6lzg%w30*w^*'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -58,7 +58,7 @@ ROOT_URLCONF = 'atto.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['blog/templates/blog'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

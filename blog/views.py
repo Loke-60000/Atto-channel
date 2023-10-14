@@ -16,6 +16,7 @@ from django.views.generic import (
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .models import News, Threads
 from django.shortcuts import render, get_object_or_404
+from django.template import RequestContext
 
 class ShowNewsView(ListView):
     model = News
@@ -54,7 +55,6 @@ class NewsDetailView(DetailView):
 
     def get_context_data(self, **kwards):
         ctx = super(NewsDetailView, self).get_context_data(**kwards)
-
         ctx['title'] = News.objects.get(pk=self.kwargs['pk'])
         return ctx
 
@@ -161,6 +161,11 @@ class ThreadsDetailView(TemplateView):
 # change!
 def contacti(request):
     return render(request, 'blog/contacti.html', {'title': 'Just a page!'})
+
+# def error_404_handler(request, exception, template_name="blog/404.html"):
+#     response = render(template_name)
+#     response.status_code = 404
+#     return response
 
 # Create your views here.
 

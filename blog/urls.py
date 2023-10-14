@@ -16,4 +16,3 @@ urlpatterns = [
     path('', views.ShowThreadsView.as_view(), name='threads'),
     path('about', views.contacti, name='contacti'),
 ]
-

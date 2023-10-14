@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>404</title>
+    <style>
+      body{
+        background: #e699ff;
+      }
+
+      .container{
+       background: #fff;
+       margin: 4% 7%;
+       height: 1100px;
+       display: flex;
+       flex-direction: column;
+       padding: 0% 10%;
+      }
+
+      .Channel{
+         margin-top: 5%;
+         background: #33ccff;
+         width: 50%;
+         margin-left: 25%;
+         margin-right: 25%;
+         text-align: center;
+         color: white;
+         border: 2px solid black;
+         border-radius: 15px;
+
+      }
+      .popular{
+         margin-top: 2%;
+         background: #fff;
+         width: 100%;
+         color: black;
+         border: 7px solid #e699ff;
+         outline: thick solid #e699ff;
+      }
+
+      .thread{
+         margin-top: 2%;
+         background: #fff;
+         width: 100%;
+         color: black;
+
+
+      }
+
+      .threads{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
+
+      .element{
+        width: 50%;
+      }
+
+      .header{
+        background: #33ccff;
+        color: white;
+      }
+
+      .header-mini{
+        color: #33ccff;
+        font-size: 80%;
+      }
+
+      a{
+         text-decoration: none;
+      }
+
+      .btn{
+      background-color: #e699ff;
+      color: white;
+      font-size: 15px;
+      text-align: center;
+      padding: 10px;
+      }
+
+<!--  padding right doesn't work! Fix!!!  -->
+      .text{padding: 0px 0px 0px 1%;}
+
+
+    </style>
+</head>
+<body>
+  <div class="container center">
+    <a href="{% url 'threads' %}"><div class="Channel"><h1>@Channel</h1></div></a>
+    <div class="popular">
+        <div class="header">❏ Error page</div>
+        <div class="text">
+            <p> Hmm...that's unexpected. Probably, the organization is trying to take us down with a sophisticated attack.
+            We will be back as soon as possible!<br> Ps. 4nmus
+            </p>
+        </div>
+    </div>
+  </div>
+</body>
+</html>

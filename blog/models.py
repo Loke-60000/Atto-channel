@@ -24,8 +24,8 @@ class Threads(models.Model):
 
 
 class News(models.Model):
-    title = models.CharField('Name of article', max_length=100, unique=True)
-    text = models.TextField("Text")
+    # title = models.CharField('Name of article', max_length=100, unique=True)
+    text = models.TextField("Text", max_length= 500)
     date = models.DateTimeField('date', default=timezone.now)
     author = models.ForeignKey(User, verbose_name='author', on_delete=models.CASCADE,  null=True)
 
@@ -33,10 +33,10 @@ class News(models.Model):
     thread = models.ForeignKey(Threads, verbose_name='thread', on_delete=models.CASCADE, null=True)
 
     def get_absolute_url(self):
-        return reverse('comment-detail', kwargs={'pk': self.pk})
+        return reverse('threads-detail', kwargs={'pk': self.thread.pk})
 
     def __str__(self):
-        return f'{self.title}'
+        return f'{self.author}'
 
     class Meta:
         verbose_name = 'New'

@@ -12,26 +12,19 @@
 
         {% for post in news %}
             <div class="post">
-                <h3>{{ post.title }}</h3>
-                <p>{{ post.text|truncatechars:200|striptags }}</p>
+                {% if post.author %}
+                    <p>Author: <a href="{% url 'user-comment' post.author %}">{{ post.author }}</a> | Rank: {{ post.author.rank.rank}} | <span class="text-muted" >published: {{ post.date|date:"d E Y H:i" }}</span></p>
+                {% else %}
+                    <p>Author: <b>Anonymous</b> | <span class="text-muted" >published: {{ post.date|date:"d E Y H:i" }}</span></p>
+                {% endif %}
+                <p>{{ post.text|striptags }}</p>
                 <div class="row">
                     <div>
                         {% if post.author %}
                         <img src="{{ post.author.profile.img.url }}" alt="{{ post.author }}" class="user_images" >
                         {% endif %}
                     </div>
-                    <div class="mt-2">
-                        <span class="text-muted" >published: {{ post.date|date:"d E Y H:i" }}</span>
-                        {% if post.author %}
-                            <p>Author: <a href="{% url 'user-comment' post.author %}">{{ post.author }}</a></p>
-                            <p>Rank: {{ post.author.rank.rank}}</p>
-                        {% else %}
-                            <p>Author: <b>Anonymous</b></p>
-                        {% endif %}
-                    </div>
                 </div>
-                <a href="{% url 'comment-detail' post.id %}" class="btn btn-outline-warning">Read full </a>
-                <br>
             </div>
         {% endfor %}
 

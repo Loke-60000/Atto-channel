@@ -62,7 +62,7 @@ class NewsDetailView(DetailView):
 class UpdateNewsView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = News
     template_name = 'blog/create_comment.html'
-    fields = ['title', 'text']
+    fields = ['text']
 
     def test_func(self):
         news = self.get_object()
@@ -100,7 +100,7 @@ class CreateNewsView(CreateView):
     model = News
     template_name = 'blog/create_comment.html'
     context_object_name = 'news'
-    fields = ['title', 'text']
+    fields = ['text']
 
     def get_context_data(self, **kwards):
         ctx = super(CreateNewsView, self).get_context_data(**kwards)
@@ -168,6 +168,3 @@ def contacti(request):
 #     return response
 
 # Create your views here.
-
-
-

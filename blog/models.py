@@ -24,11 +24,9 @@ class Threads(models.Model):
 
 
 class News(models.Model):
-    # title = models.CharField('Name of article', max_length=100, unique=True)
     text = models.TextField("Text", max_length= 500)
     date = models.DateTimeField('date', default=timezone.now)
     author = models.ForeignKey(User, verbose_name='author', on_delete=models.CASCADE,  null=True)
-
     # Chagne null=True later! Ps. 4nmus
     thread = models.ForeignKey(Threads, verbose_name='thread', on_delete=models.CASCADE, null=True)
 
@@ -36,7 +34,7 @@ class News(models.Model):
         return reverse('threads-detail', kwargs={'pk': self.thread.pk})
 
     def __str__(self):
-        return f'{self.author}'
+        return f'{self.pk}'
 
     class Meta:
         verbose_name = 'New'

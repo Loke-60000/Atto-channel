@@ -13,9 +13,9 @@
         {% for post in news %}
             <div class="post">
                 {% if post.author %}
-                    <p>Author: <a href="{% url 'user-comment' post.author %}">{{ post.author }}</a> | Rank: {{ post.author.rank.rank}} | <span class="text-muted" >published: {{ post.date|date:"d E Y H:i" }}</span></p>
+                    <p>{{ post.id }} | Author: <a href="{% url 'user-comment' post.author %}">{{ post.author }}</a> | Rank: {{ post.author.rank.rank}} | <span class="text-muted" >published: {{ post.date|date:"d E Y H:i" }}</span></p>
                 {% else %}
-                    <p>Author: <b>Anonymous</b> | <span class="text-muted" >published: {{ post.date|date:"d E Y H:i" }}</span></p>
+                    <p>{{ post.id }} | Author: <b>Anonymous</b> | <span class="text-muted" >published: {{ post.date|date:"d E Y H:i" }}</span></p>
                 {% endif %}
                 <p>{{ post.text|striptags }}</p>
                 <div class="row">

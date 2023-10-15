@@ -15,4 +15,5 @@ urlpatterns = [
     path('threads/<int:pk>', views.ThreadsDetailView.as_view(), name='threads-detail'),
     path('', views.ShowThreadsView.as_view(), name='threads'),
     path('about', views.contacti, name='contacti'),
+    path('comment/<int:pk>/reply', views.CreateRepliesView.as_view(), name='comment-reply'),
 ]

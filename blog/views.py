@@ -14,7 +14,7 @@ from django.views.generic import (
     TemplateView
 )
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from .models import News, Threads
+from .models import News, Threads, Replies
 from django.shortcuts import render, get_object_or_404
 from django.template import RequestContext
 
@@ -157,10 +157,31 @@ class ThreadsDetailView(TemplateView):
         ctx['news'] = News.objects.filter(thread=current_thread).order_by('-date')
         return ctx
 
+class CreateRepliesView(CreateView):
+    model = Replies
+    template_name = 'blog/create_comment.html'
+    context_object_name = 'replies'
+    fields = ['text']
+
+    def get_context_data(self, **kwards):
+        ctx = super(CreateRepliesView, self).get_context_data(**kwards)
+        ctx['title'] = 'Add reply'
+        ctx['btn_text'] = 'Add'
+        return ctx
+
+    def form_valid(self, form):
+        # temp decision for implementing anon users
+        if not isinstance(self.request.user, AnonymousUser):
+            form.instance.author = self.request.user
+        current_comment = News.objects.get(pk=self.kwargs['pk'])
+        form.instance.original = current_comment
+
+        return super().form_valid(form)
 
 # change!
 def contacti(request):
     return render(request, 'blog/contacti.html', {'title': 'Just a page!'})
+
 
 # def error_404_handler(request, exception, template_name="blog/404.html"):
 #     response = render(template_name)

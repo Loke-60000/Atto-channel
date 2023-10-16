@@ -155,6 +155,8 @@ class ThreadsDetailView(TemplateView):
         current_thread = Threads.objects.get(pk=self.kwargs['pk'])
         ctx['title'] = current_thread
         ctx['news'] = News.objects.filter(thread=current_thread).order_by('-date')
+        # It's 2 AM, so it's fine for now. Set up filter later! Ps 4nmus
+        ctx['replies'] = Replies.objects.all()
         return ctx
 
 class CreateRepliesView(CreateView):

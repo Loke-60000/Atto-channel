@@ -26,7 +26,25 @@
                     </div>
                 </div>
                 <h2 class="text-center"><a href="{% url 'comment-reply' post.id %}"><button class="btn btn-outline-secondary">add reply</button></a></h2>
-
+                {% for reply in replies %}
+                    {% if reply.original == post %}
+                        <div class="post">
+                        {% if reply.author %}
+                            <p>{{ reply.id }} | Author: <a href="{% url 'user-comment' reply.author %}">{{ reply.author }}</a> | Rank: {{ post.author.rank.rank}} | <span class="text-muted" >published: {{ post.date|date:"d E Y H:i" }}</span></p>
+                        {% else %}
+                            <p>{{ reply.id }} | Author: <b>Anonymous</b> | <span class="text-muted" >published: {{ post.date|date:"d E Y H:i" }}</span></p>
+                        {% endif %}
+                        <p>{{ reply.text|striptags }}</p>
+                        <div class="row">
+                            <div>
+                                {% if reply.author %}
+                                <img src="{{ reply.author.profile.img.url }}" alt="{{ reply.author }}" class="user_images" >
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                {% endfor %}
             </div>
         {% endfor %}
 

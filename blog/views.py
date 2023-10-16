@@ -101,7 +101,6 @@ class CreateNewsView(CreateView):
     template_name = 'blog/create_comment.html'
     context_object_name = 'news'
     fields = ['text']
-
     def get_context_data(self, **kwards):
         ctx = super(CreateNewsView, self).get_context_data(**kwards)
         ctx['title'] = 'Add comment'
@@ -164,7 +163,6 @@ class CreateRepliesView(CreateView):
     template_name = 'blog/create_comment.html'
     context_object_name = 'replies'
     fields = ['text']
-
     def get_context_data(self, **kwards):
         ctx = super(CreateRepliesView, self).get_context_data(**kwards)
         ctx['title'] = 'Add reply'

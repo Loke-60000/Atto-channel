@@ -30,7 +30,7 @@ class News(models.Model):
     # Chagne null=True later! Ps. 4nmus
     thread = models.ForeignKey(Threads, verbose_name='thread', on_delete=models.CASCADE, null=True)
     def get_absolute_url(self):
-        return reverse(['threads-detail', 'comment-reply'], kwargs={'pk': self.thread.pk})
+        return reverse('threads-detail', kwargs={'pk': self.thread.pk})
 
     def __str__(self):
         return f'{self.pk}'
@@ -45,8 +45,8 @@ class Replies(models.Model):
     author = models.ForeignKey(User, verbose_name='author', on_delete=models.CASCADE, null=True)
 
     original = models.ForeignKey(News, verbose_name='new', on_delete=models.CASCADE, null=True)
-    # def get_absolute_url(self):
-    #     return reverse('threads-detail', kwargs={'pk': self.thread.pk})
+    def get_absolute_url(self):
+        return reverse('threads-detail', kwargs={'pk': self.original.thread.pk})
 
     def __str__(self):
         return f'{self.pk}'

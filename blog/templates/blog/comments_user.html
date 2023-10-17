@@ -10,7 +10,7 @@
     <h1>{{ title }}</h1>
     {% for post in news %}
         <div class="post">
-            <p>{{ post.id }} &nbsp;Name: <a href="{% url 'user-comment' post.author %}">{{ post.author }}</a><span class="text-muted" >&nbsp; :{{ post.date|date:"Y/m/d H:i:s" }}</span></p>
+            <p>{{ post.id }} &nbsp;Name: <a href="{% url 'user-comment' post.author %}">{{ post.author }}</a><span class="text-muted" > :{{ post.date|date:"Y/m/d (l) H:i:s" }}</span></p>
             <p>{{ post.text|striptags }}</p>
         </div>
     {% endfor %}

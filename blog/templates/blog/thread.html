@@ -13,9 +13,9 @@
         {% for post in news %}
             <div class="post">
                 {% if post.author %}
-                    <p>{{ post.id }} &nbsp;Name: <a href="{% url 'user-comment' post.author %}">{{ post.author }}</a><span class="text-muted" >&nbsp; :{{ post.date|date:"Y/m/d H:i:s" }}</span></p>
+                    <p>{{ post.id }} &nbsp;Name: <a href="{% url 'user-comment' post.author %}">{{ post.author }}</a><span class="text-muted" > :{{ post.date|date:"Y/m/d (l) H:i:s" }}</span></p>
                 {% else %}
-                    <p>{{ post.id }} &nbsp;Name: <b>Anonymous</b> <span class="text-muted" >&nbsp; :{{ post.date|date:"Y/m/d H:i:s" }}</span></p>
+                    <p>{{ post.id }} &nbsp;Name: <b>Anonymous</b> <span class="text-muted" > :{{ post.date|date:"Y/m/d (l) H:i:s" }}</span></p>
                 {% endif %}
                 <p>{{ post.text|striptags }}</p>
                 <h2 class="text-center"><a href="{% url 'comment-reply' post.id %}"><button class="btn btn-outline-secondary">add reply</button></a></h2>
@@ -23,9 +23,9 @@
                     {% if reply.original == post %}
                         <div class="post">
                         {% if reply.author %}
-                            <p>{{ reply.id }} | Name: <a href="{% url 'user-comment' reply.author %}">{{ reply.author }}</a> | Rank: {{ post.author.rank.rank}} | <span class="text-muted" >published: {{ post.date|date:"d E Y H:i" }}</span></p>
+                            <p>{{ post.id }} &nbsp;Name: <a href="{% url 'user-comment' post.author %}">{{ post.author }}</a><span class="text-muted" > :{{ post.date|date:"Y/m/d (l) H:i:s" }}</span></p>
                         {% else %}
-                            <p>{{ reply.id }} | Name: <b>Anonymous</b> | <span class="text-muted" >published: {{ post.date|date:"Y/m/d H:i:s" }}</span></p>
+                            <p>{{ post.id }} &nbsp;Name: <b>Anonymous</b> <span class="text-muted" > :{{ post.date|date:"Y/m/d (l) H:i:s" }}</span></p>
                         {% endif %}
                         <p>{{ reply.text|striptags }}</p>
                     </div>

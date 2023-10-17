@@ -16,24 +16,33 @@
 
             {% if page_obj.has_previous %}
                 <a href="{% url 'threads' %}" class="btn">Main</button></a>
-                <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-outline-warning">Previous</a>
+                <a href="?page={{ page_obj.previous_page_number }}" class="btn">Previous</a>
             {% endif %}
 
 
             {% for page in page_obj.paginator.page_range %}
                 {% if page == page_obj.number %}
-                    <button class="btn btn-warning">{{ page }}</button>
+                    <button class="btn">{{ page }}</button>
                 {% elif page > page_obj.number|add:'-3' and page < page_obj.number|add:'3' %}
-                    <a href="?page={{ page }}" class="btn btn--outline-warning">{{ page }}</a>
+                    <a href="?page={{ page }}" class="btn">{{ page }}</a>
                 {% endif %}
             {% endfor %}
 
 
             {% if page_obj.has_next %}
-                <a href="?page={{ page_obj.next_page_number }}" class="btn btn-outline-warning">Next</a>
-                <a href="?page={{ page_obj.paginator.num_pages }}" class="btn btn-outline-warning">Last</a>
+                <a href="?page={{ page_obj.next_page_number }}" class="btn">Next</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}" class="btn">Last</a>
             {% endif %}
 
         {% endif %}
     </div>
+    <nav>
+        <div class="center">
+            <a href="/threads/1">/Sci/</a>
+            <a href="/threads/2">/Dev/</a>
+            <a href="/threads/3">/Ner/</a>
+            <a href="/threads/4">/Sec/</a>
+            <a href="/threads/4">/Con/</a>
+        </div>
+    </nav>
 {% endblock %}

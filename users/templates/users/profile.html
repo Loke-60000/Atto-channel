@@ -7,8 +7,7 @@
 {% block content %}
     <h1>Profile page</h1>
     <h3><a href="{% url 'user-comment' user.username %}">See all posts</a></h3>
-    <div class="d-flex text-body-secondary pt-3">
-      <img class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="64" height="64" src="{{ user.profile.img.url}}">
+    <div>
       <p class="pb-3 mb-0 small lh-sm border-bottom">
         <strong class="d-block text-gray-dark">@{{ user.username }}</strong>
         {% if user.email %}
@@ -17,10 +16,10 @@
         <b>Email: hidden by CERN</b>
         {% endif %}
         <br>
-        <b>Rank: {{ pass }}</b>
+        <b>Rank: {{ user.rank.rank }}</b>
       </p>
     </div>
-    <form method="post" enctype="multipart/form-data" class="form-register mt-4">
+    <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ updateUserForm.as_p }}
         {{ profileForm.as_p }}

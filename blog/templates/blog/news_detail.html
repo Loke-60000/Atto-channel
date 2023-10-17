@@ -7,10 +7,10 @@
 {% block content %}
 /* replace post to object if smth doesnt work!*/
     <h1>{{ title }}</h1>
-        <div class="alert alert-dark">
+        <div>
             <h3>{{ post.title }}</h3>
             <p>{{ post.text|safe }}</p>
-            <div class="row">
+            <div>
                 <div>
                     {% if post.author.profile.img.url %}
                     <img src="{{ post.author.profile.img.url }}" alt="{{ post.author }}" class="user_images" >

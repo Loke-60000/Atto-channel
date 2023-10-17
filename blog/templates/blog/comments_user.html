@@ -9,23 +9,9 @@
     <h3>Num of posts: {{ page_obj.paginator.count }}</h3>
     <h1>{{ title }}</h1>
     {% for post in news %}
-        <div class="alert alert-dark">
-            <h3>{{ post.title }}</h3>
-            <p>{{ post.text|truncatechars:200|striptags }}</p>
-            <div class="row">
-                <div>
-                    <img src="{{ post.author.profile.img.url }}" alt="{{ post.author }}" class="user_images" >
-                </div>
-                <div class="mt-2">
-                    <span class="text-muted" >published: {{ post.date|date:"d E Y H:i" }}</span>
-                    {% if post.author %}
-                        <p>Author: <a href="{% url 'user-comment' post.author %}">{{ post.author }}</a></p>
-                    {% else %}
-                        <p>Author: <b>Anonymous</b>, date: {{ post.date|date }}</p>
-                    {% endif %}
-                </div>
-            </div>
-            <a href="{% url 'comment-detail' post.id %}" class="btn btn-outline-warning">Read full </a>
+        <div class="post">
+            <p>{{ post.id }} &nbsp;Name: <a href="{% url 'user-comment' post.author %}">{{ post.author }}</a><span class="text-muted" >&nbsp; :{{ post.date|date:"Y/m/d H:i:s" }}</span></p>
+            <p>{{ post.text|striptags }}</p>
         </div>
     {% endfor %}
 

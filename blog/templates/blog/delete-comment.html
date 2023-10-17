@@ -8,7 +8,7 @@
     <h1>Are you sure about deleting "{{ object.title }}"?</h1>
     <form method="post" class="form-register auth">
         {% csrf_token %}
-        <button class="btn btn-outline-danger" type="submit">Yes, delete</button>
+        <button class="btn" type="submit">Yes, delete</button>
         <a href="{% url 'comment-detail' object.id %}">No, cancel</a>
     </form>
 {% endblock %}

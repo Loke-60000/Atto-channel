@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from .models import Profile
+
 
 class UserRegisterForm(UserCreationForm):
     email = forms.EmailField(label='Enter email', required=False, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': "email"}))
@@ -31,13 +31,3 @@ class UserUpdateForm(forms.ModelForm):
         model = User
         fields = ['email', 'username']
 
-class ProfileImageForm(forms.ModelForm):
-    img = forms.ImageField(
-        label='update photo',
-        required=False,
-        widget=forms.FileInput
-    )
-
-    class Meta:
-        model = Profile
-        fields = ['img']

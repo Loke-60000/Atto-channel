@@ -23,9 +23,9 @@
                     {% if reply.original == post %}
                         <div class="post">
                         {% if reply.author %}
-                            <p>{{ post.id }} &nbsp;Name: <a href="{% url 'user-comment' post.author %}">{{ post.author }}</a><span class="text-muted" > :{{ post.date|date:"Y/m/d (l) H:i:s" }}</span></p>
+                            <p>{{ reply.id }} &nbsp;Name: <a href="{% url 'user-comment' post.author %}">{{ reply.author }}</a><span class="text-muted" > :{{ reply.date|date:"Y/m/d (l) H:i:s" }}</span></p>
                         {% else %}
-                            <p>{{ post.id }} &nbsp;Name: <b>Anonymous</b> <span class="text-muted" > :{{ post.date|date:"Y/m/d (l) H:i:s" }}</span></p>
+                            <p>{{ reply.id }} &nbsp;Name: <b>Anonymous</b> <span class="text-muted" > :{{ reply.date|date:"Y/m/d (l) H:i:s" }}</span></p>
                         {% endif %}
                         <p>{{ reply.text|striptags }}</p>
                     </div>

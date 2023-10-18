@@ -18,21 +18,21 @@ from .models import News, Threads, Replies
 from django.shortcuts import render, get_object_or_404
 from django.template import RequestContext
 
-class ShowNewsView(ListView):
+class ShowPostsView(ListView):
     model = News
     template_name = 'blog/home.html'
     context_object_name = 'news'
     ordering = ['-date']
     paginate_by = 5
     def get_context_data(self, **kwargs):
-        ctx = super(ShowNewsView, self).get_context_data(**kwargs)
+        ctx = super(ShowPostsView, self).get_context_data(**kwargs)
         ctx['title'] = 'All comments. Search thread/1,2,3.. to view threads.'
 
         return ctx
 
 
 #implenment new profile base for @chan users! For test purposes base.html is used. PS. 4nmus
-class UserAllNewsView(ListView):
+class UserAllPostsView(ListView):
     model = News
     template_name = 'blog/comments_user.html'
     context_object_name = 'news'
@@ -44,22 +44,22 @@ class UserAllNewsView(ListView):
         return News.objects.filter(author=user).order_by('-date')
 
     def get_context_data(self, **kwargs):
-        ctx = super(UserAllNewsView, self).get_context_data(**kwargs)
+        ctx = super(UserAllPostsView, self).get_context_data(**kwargs)
         ctx['title'] = 'Author page'
         return ctx
 
-class NewsDetailView(DetailView):
+class PostDetailView(DetailView):
     model = News
     template_name = 'blog/news_detail.html'
     context_object_name = 'post'
 
     def get_context_data(self, **kwards):
-        ctx = super(NewsDetailView, self).get_context_data(**kwards)
+        ctx = super(PostDetailView, self).get_context_data(**kwards)
         ctx['title'] = News.objects.get(pk=self.kwargs['pk'])
         return ctx
 
 
-class UpdateNewsView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+class UpdatePostView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = News
     template_name = 'blog/create_comment.html'
     fields = ['text']
@@ -75,13 +75,13 @@ class UpdateNewsView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         return super().form_valid(form)
 
     def get_context_data(self, **kwards):
-        ctx = super(UpdateNewsView, self).get_context_data(**kwards)
+        ctx = super(UpdatePostView, self).get_context_data(**kwards)
         ctx['title'] = 'Update article'
         ctx['btn_text'] = 'Update'
         return ctx
 
 
-class DeleteNewsView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+class DeletePostView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = News
     success_url = '/'
     template_name = 'blog/delete-comment.html'
@@ -96,13 +96,13 @@ class DeleteNewsView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 # LoginRequiredMixin
 
 
-class CreateNewsView(CreateView):
+class CreatePostView(CreateView):
     model = News
     template_name = 'blog/create_comment.html'
     context_object_name = 'news'
-    fields = ['text']
+    fields = ['text', 'img']
     def get_context_data(self, **kwards):
-        ctx = super(CreateNewsView, self).get_context_data(**kwards)
+        ctx = super(CreatePostView, self).get_context_data(**kwards)
         ctx['title'] = 'Add comment'
         ctx['btn_text'] = 'Add'
         return ctx
@@ -113,7 +113,6 @@ class CreateNewsView(CreateView):
             form.instance.author = self.request.user
         current_thread = Threads.objects.get(pk=self.kwargs['pk'])
         form.instance.thread = current_thread
-
         return super().form_valid(form)
 
 

@@ -29,6 +29,8 @@ class News(models.Model):
     author = models.ForeignKey(User, verbose_name='author', on_delete=models.CASCADE,  null=True)
     # Chagne null=True later! Ps. 4nmus
     thread = models.ForeignKey(Threads, verbose_name='thread', on_delete=models.CASCADE, null=True)
+    img = models.ImageField("img", upload_to="posts_images/", null=True, blank= True)
+
     def get_absolute_url(self):
         return reverse('threads-detail', kwargs={'pk': self.thread.pk})
 

@@ -18,6 +18,11 @@
                     <p>{{ post.id }} &nbsp;Name: <b>Anonymous</b> <span class="text-muted" > :{{ post.date|date:"Y/m/d (l) H:i:s" }}</span></p>
                 {% endif %}
                 <p>{{ post.text|striptags }}</p>
+                {% if post.img %}
+                <div class="user_images">
+                    <img src="{{ post.img.url }}">
+                </div>
+                {% endif %}
                 <h2 class="text-center"><a href="{% url 'comment-reply' post.id %}"><button class="btn btn-outline-secondary">add reply</button></a></h2>
                 {% for reply in replies %}
                     {% if reply.original == post %}

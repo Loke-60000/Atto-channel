@@ -4,8 +4,8 @@ from django.contrib.auth.forms import UserCreationForm
 
 
 class UserRegisterForm(UserCreationForm):
-    email = forms.EmailField(label='Enter email', required=False, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': "email"}))
-    username = forms.CharField(label='Enter login', required=True, help_text="Prohibited characters: @, /, _", widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': "login"}))
+    email = forms.EmailField(label='Enter email', required=False, help_text= "(We don't check)", widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': "email"}))
+    username = forms.CharField(label='Enter username', required=True, help_text="Prohibited characters: @, /, _", widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': "username"}))
     # some = forms.ModelChoiceField(queryset=User.objects.all())
     password1 = forms.CharField(
         label='Enter password',
@@ -21,10 +21,10 @@ class UserRegisterForm(UserCreationForm):
 
 
 class UserUpdateForm(forms.ModelForm):
-    email = forms.EmailField(label='Enter email', required=False,
+    email = forms.EmailField(label='Update email', required=False,
                              widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': "email"}))
-    username = forms.CharField(label='Enter login', required=True, help_text="Prohibited characters: @, /, _",
-                               widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': "login"}))
+    username = forms.CharField(label='Update username', required=True, help_text="Prohibited characters: @, /, _",
+                               widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': "username"}))
     # some = forms.ModelChoiceField(queryset=User.objects.all())
 
     class Meta:

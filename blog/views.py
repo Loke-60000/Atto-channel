@@ -15,8 +15,8 @@ from django.views.generic import (
 )
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .models import News, Threads, Replies
-from django.shortcuts import render, get_object_or_404
-from django.template import RequestContext
+from django.shortcuts import render
+
 
 class ShowPostsView(ListView):
     model = News
@@ -60,25 +60,26 @@ class PostDetailView(DetailView):
 
 
 class UpdatePostView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
-    model = News
-    template_name = 'blog/create_comment.html'
-    fields = ['text']
-
-    def test_func(self):
-        news = self.get_object()
-        if self.request.user == news.author:
-            return True
-        return False
-
-    def form_valid(self, form):
-        form.instance.author = self.request.user
-        return super().form_valid(form)
-
-    def get_context_data(self, **kwards):
-        ctx = super(UpdatePostView, self).get_context_data(**kwards)
-        ctx['title'] = 'Update article'
-        ctx['btn_text'] = 'Update'
-        return ctx
+    pass
+    # model = News
+    # template_name = 'blog/create_comment.html'
+    # fields = ['text']
+    #
+    # def test_func(self):
+    #     news = self.get_object()
+    #     if self.request.user == news.author:
+    #         return True
+    #     return False
+    #
+    # def form_valid(self, form):
+    #     form.instance.author = self.request.user
+    #     return super().form_valid(form)
+    #
+    # def get_context_data(self, **kwards):
+    #     ctx = super(UpdatePostView, self).get_context_data(**kwards)
+    #     ctx['title'] = 'Update article'
+    #     ctx['btn_text'] = 'Update'
+    #     return ctx
 
 
 class DeletePostView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
@@ -91,9 +92,6 @@ class DeletePostView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         if self.request.user == news.author:
             return True
         return False
-
-# temp decision for implementing anon users
-# LoginRequiredMixin
 
 
 class CreatePostView(CreateView):
@@ -174,12 +172,11 @@ class CreateRepliesView(CreateView):
             form.instance.author = self.request.user
         current_comment = News.objects.get(pk=self.kwargs['pk'])
         form.instance.original = current_comment
-
         return super().form_valid(form)
 
 # change!
 def contacti(request):
-    return render(request, 'blog/contacti.html', {'title': 'Just a page!'})
+    return render(request, 'blog/about.html')
 
 
 # def error_404_handler(request, exception, template_name="blog/404.html"):

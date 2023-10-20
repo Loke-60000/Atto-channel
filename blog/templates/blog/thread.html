@@ -5,10 +5,12 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container bg-light">
-        <h1 class="text-center">{{ title }}</h1>
-
-        <h2 class="text-center"><a href="{% url 'comment-add' title.id %}"><button class="btn btn-outline-secondary">add comment</button></a></h2>
+    <div class="">
+        <div class="title-thread">
+        <div class="text-center title1">{{ title }}</div>
+        <h2 class="text-center"><a href="{% url 'comment-add' title.id %}"><button class="btn">add post</button></a></h2>
+        </div>
+        <div class="containerMain">
         {% for post in news %}
             <div class="post">
                 {% if post.author %}
@@ -57,5 +59,6 @@
                 <a href="?page={{ page_obj.paginator.num_pages }}" class="btn btn-outline-warning">Last</a>
             {% endif %}
         {% endif %}
+        </div>
     </div>
 {% endblock %}

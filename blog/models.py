@@ -26,7 +26,7 @@ class Threads(models.Model):
 class News(models.Model):
     text = models.TextField("Text", max_length= 500)
     date = models.DateTimeField('date', default=timezone.now)
-    author = models.ForeignKey(User, verbose_name='author', on_delete=models.CASCADE,  null=True)
+    author = models.ForeignKey(User, verbose_name='author', on_delete=models.CASCADE,  null=True, blank=True)
     # Chagne null=True later! Ps. 4nmus
     thread = models.ForeignKey(Threads, verbose_name='thread', on_delete=models.CASCADE, null=True)
     img = models.ImageField("img", upload_to="posts_images/", null=True, blank= True)

@@ -47,6 +47,8 @@ class Replies(models.Model):
     author = models.ForeignKey(User, verbose_name='author', on_delete=models.CASCADE, null=True)
 
     original = models.ForeignKey(News, verbose_name='new', on_delete=models.CASCADE, null=True)
+    thread = models.ForeignKey(Threads, verbose_name='thread', on_delete=models.CASCADE, null=True, blank=True)
+
     def get_absolute_url(self):
         return reverse('threads-detail', kwargs={'pk': self.original.thread.pk})
 

@@ -59,29 +59,6 @@ class PostDetailView(DetailView):
         return ctx
 
 
-class UpdatePostView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
-    pass
-    # model = News
-    # template_name = 'blog/create_comment.html'
-    # fields = ['text']
-    #
-    # def test_func(self):
-    #     news = self.get_object()
-    #     if self.request.user == news.author:
-    #         return True
-    #     return False
-    #
-    # def form_valid(self, form):
-    #     form.instance.author = self.request.user
-    #     return super().form_valid(form)
-    #
-    # def get_context_data(self, **kwards):
-    #     ctx = super(UpdatePostView, self).get_context_data(**kwards)
-    #     ctx['title'] = 'Update article'
-    #     ctx['btn_text'] = 'Update'
-    #     return ctx
-
-
 class DeletePostView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = News
     success_url = '/'
@@ -99,14 +76,14 @@ class CreatePostView(CreateView):
     template_name = 'blog/create_comment.html'
     context_object_name = 'news'
     fields = ['text', 'img']
+
     def get_context_data(self, **kwards):
         ctx = super(CreatePostView, self).get_context_data(**kwards)
-        ctx['title'] = 'Add comment'
+        ctx['title'] = 'Add post'
         ctx['btn_text'] = 'Add'
         return ctx
 
     def form_valid(self, form):
-        # temp decision for implementing anon users
         if not isinstance(self.request.user, AnonymousUser):
             form.instance.author = self.request.user
         current_thread = Threads.objects.get(pk=self.kwargs['pk'])
@@ -142,7 +119,6 @@ def threads(request):
 
 class ThreadsDetailView(TemplateView):
     model = Threads
-    # to change!
     template_name = 'blog/thread.html'
     context_object_name = 'post'
 
@@ -175,13 +151,7 @@ class CreateRepliesView(CreateView):
         return super().form_valid(form)
 
 # change!
-def contacti(request):
+def about(request):
     return render(request, 'blog/about.html')
-
-
-# def error_404_handler(request, exception, template_name="blog/404.html"):
-#     response = render(template_name)
-#     response.status_code = 404
-#     return response
 
 # Create your views here.

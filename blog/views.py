@@ -127,8 +127,7 @@ class ThreadsDetailView(TemplateView):
         current_thread = Threads.objects.get(pk=self.kwargs['pk'])
         ctx['title'] = current_thread
         ctx['news'] = News.objects.filter(thread=current_thread).order_by('-date')
-        # It's 2 AM, so it's fine for now. Set up filter later! Ps 4nmus
-        ctx['replies'] = Replies.objects.all()
+        ctx['replies'] = Replies.objects.filter(thread=current_thread)
         return ctx
 
 class CreateRepliesView(CreateView):
@@ -143,11 +142,11 @@ class CreateRepliesView(CreateView):
         return ctx
 
     def form_valid(self, form):
-        # temp decision for implementing anon users
         if not isinstance(self.request.user, AnonymousUser):
             form.instance.author = self.request.user
         current_comment = News.objects.get(pk=self.kwargs['pk'])
         form.instance.original = current_comment
+        form.instance.thread = current_comment.thread
         return super().form_valid(form)
 
 # change!

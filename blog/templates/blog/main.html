@@ -4,83 +4,96 @@
     <meta charset="UTF-8">
     <title>@Channel</title>
     <style>
-      body{
-        background: #e699ff;
+      :root {
+          --background-color: #8b84a1;
+          --container-bg: #fff;
+          --channel-bg: #79aabc;
+          --channel-border-color: #779da7;
+          --popular-border-color: #8b84a1;
+          --text-color-white: white;
+          --text-color-black: black;
+          --text-color-header-mini: #33ccff;
+          --btn-bg: #79aabc;
       }
 
-      .container{
-       background: #fff;
-       margin: 4% 7%;
-       height: 1100px;
-       display: flex;
-       flex-direction: column;
-       padding: 0% 10%;
+      body {
+          background: var(--background-color);
       }
 
-      .Channel{
-         margin-top: 5%;
-         background: #33ccff;
-         width: 50%;
-         margin-left: 25%;
-         margin-right: 25%;
-         text-align: center;
-         color: white;
-         border: 2px solid black;
-         border-radius: 15px;
-
-      }
-      .popular{
-         margin-top: 2%;
-         background: #fff;
-         width: 100%;
-         color: black;
-         border: 7px solid #e699ff;
-         outline: thick solid #e699ff;
+      .container {
+          background: var(--container-bg);
+          margin: 4% 7%;
+          height: 1100px;
+          display: flex;
+          flex-direction: column;
+          padding: 0% 10%;
       }
 
-      .thread{
-         margin-top: 2%;
-         background: #fff;
-         width: 100%;
-         color: black;
-
-
+      .Channel {
+          margin-top: 5%;
+          background: var(--channel-bg);
+          width: 50%;
+          margin-left: 25%;
+          margin-right: 25%;
+          text-align: center;
+          color: var(--text-color-white);
+          border: 8px solid var(--channel-border-color);
+          border-radius: 15px;
       }
 
-      .threads{
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
+      .popular {
+          margin-top: 2%;
+          background: var(--container-bg);
+          width: 100%;
+          color: var(--text-color-black);
+          border: 7px solid var(--popular-border-color);
+          outline: thick solid var(--popular-border-color);
+          border-radius: 1px;
       }
 
-      .element{
-        width: 50%;
+      .thread {
+          margin-top: 2%;
+          background: var(--container-bg);
+          width: 100%;
+          color: var(--text-color-black);
       }
 
-      .header{
-        background: #33ccff;
-        color: white;
+      .threads {
+          display: flex;
+          flex-direction: row;
+          flex-wrap: wrap;
       }
 
-      .header-mini{
-        color: #33ccff;
-        font-size: 80%;
+      .element {
+          width: 50%;
       }
 
-      a{
-         text-decoration: none;
+      .header {
+          background: var(--channel-bg);
+          color: var(--text-color-white);
       }
 
-      .btn{
-      background-color: #e699ff;
-      color: white;
-      font-size: 15px;
-      text-align: center;
-      padding: 10px;
+      .header-mini {
+          color: var(--text-color-header-mini);
+          font-size: 80%;
       }
-      .center{
-        text-align: center;
+
+      a {
+          text-decoration: none;
       }
+
+      .btn {
+          background-color: var(--btn-bg);
+          color: var(--text-color-white);
+          font-size: 15px;
+          text-align: center;
+          padding: 10px;
+      }
+
+      .center {
+          text-align: center;
+      }
+
     </style>
 </head>
 <body>

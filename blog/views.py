@@ -16,6 +16,7 @@ from django.views.generic import (
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .models import News, Threads, Replies
 from django.shortcuts import render
+import hashlib
 
 
 class ShowPostsView(ListView):
@@ -86,6 +87,9 @@ class CreatePostView(CreateView):
     def form_valid(self, form):
         if not isinstance(self.request.user, AnonymousUser):
             form.instance.author = self.request.user
+            # user for unique id
+            form.instance.rand_id = hashlib.sha256(f"{self.request.user}".encode('utf-8')).hexdigest()[:9]
+
         current_thread = Threads.objects.get(pk=self.kwargs['pk'])
         form.instance.thread = current_thread
         return super().form_valid(form)
@@ -144,6 +148,7 @@ class CreateRepliesView(CreateView):
     def form_valid(self, form):
         if not isinstance(self.request.user, AnonymousUser):
             form.instance.author = self.request.user
+            form.instance.rand_id = hashlib.sha256(f"{self.request.user}".encode('utf-8')).hexdigest()[:9]
         current_comment = News.objects.get(pk=self.kwargs['pk'])
         form.instance.original = current_comment
         form.instance.thread = current_comment.thread

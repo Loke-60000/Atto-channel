@@ -3,6 +3,8 @@ from django.utils import timezone
 from django.contrib.auth.models import User, AnonymousUser
 from django.urls import reverse
 from django.shortcuts import get_list_or_404
+import hashlib
+
 
 class Threads(models.Model):
     title = models.CharField("Name of thread", max_length=100, unique=True)
@@ -30,6 +32,7 @@ class News(models.Model):
     # Chagne null=True later! Ps. 4nmus
     thread = models.ForeignKey(Threads, verbose_name='thread', on_delete=models.CASCADE, null=True)
     img = models.ImageField("img", upload_to="posts_images/", null=True, blank= True)
+    rand_id = models.TextField("rand_id", null=True, blank=True, default=" ")
 
     def get_absolute_url(self):
         return reverse('threads-detail', kwargs={'pk': self.thread.pk})
@@ -48,6 +51,7 @@ class Replies(models.Model):
 
     original = models.ForeignKey(News, verbose_name='comment #', on_delete=models.CASCADE, null=True)
     thread = models.ForeignKey(Threads, verbose_name='thread', on_delete=models.CASCADE, null=True, blank=True)
+    rand_id = models.TextField("rand_id", null=True, blank=True, default=" ")
 
     def get_absolute_url(self):
         return reverse('threads-detail', kwargs={'pk': self.original.thread.pk})

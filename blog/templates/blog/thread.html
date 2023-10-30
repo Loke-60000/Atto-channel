@@ -17,7 +17,7 @@
                 {% if post.author %}
                     <p>{{ post.id }} &nbsp;Name: <a href="{% url 'user-comment' post.author %}">{{ post.author }}</a><span class="text-muted" > :{{ post.date|date:"Y/m/d (l) H:i:s" }} &nbsp;&nbsp; ID:{{ post.rand_id }}</span></p>
                 {% else %}
-                    <p>{{ post.id }} &nbsp;Name: <b>Anonymous</b> <span class="text-muted" > :{{ post.date|date:"Y/m/d (l) H:i:s" }}</span></p>
+                    <p>{{ post.id }} &nbsp;Name: <b>Anonymous</b> <span class="text-muted" > :{{ post.date|date:"Y/m/d (l) H:i:s" }}  &nbsp;&nbsp; ID:{{ post.rand_id }}</span></p>
                 {% endif %}
                 <p>{{ post.text|striptags }}</p>
                 {% if post.img %}

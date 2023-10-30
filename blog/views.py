@@ -1,3 +1,5 @@
+import time
+
 from django.shortcuts import (
     render,
     get_list_or_404
@@ -16,7 +18,20 @@ from django.views.generic import (
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .models import News, Threads, Replies
 from django.shortcuts import render
+import hashlib
+from django.conf import settings
+from django.contrib.sessions.middleware import SessionMiddleware
+from django.http import HttpResponse
 
+def SetSession(request):
+    #user id based on current time with hash
+    user_id = hashlib.sha256(f"{time.time()}".encode('utf-8')).hexdigest()[:9]
+    request.session['user_id'] = user_id
+    return 0
+
+def GetSession(request):
+    user_id = request.session.get('user_id')
+    return user_id
 
 class ShowPostsView(ListView):
     model = News
@@ -84,8 +99,19 @@ class CreatePostView(CreateView):
         return ctx
 
     def form_valid(self, form):
+        #temporary
+        user_id_hashed = GetSession(self.request)
+        if user_id_hashed is None:
+            SetSession(self.request)
+        user_id_hashed = GetSession(self.request)
+
         if not isinstance(self.request.user, AnonymousUser):
             form.instance.author = self.request.user
+            # user for unique id
+            form.instance.rand_id = hashlib.sha256(f"{self.request.user}".encode('utf-8')).hexdigest()[:9]
+        else:
+            form.instance.rand_id = user_id_hashed
+
         current_thread = Threads.objects.get(pk=self.kwargs['pk'])
         form.instance.thread = current_thread
         return super().form_valid(form)
@@ -144,6 +170,7 @@ class CreateRepliesView(CreateView):
     def form_valid(self, form):
         if not isinstance(self.request.user, AnonymousUser):
             form.instance.author = self.request.user
+            form.instance.rand_id = hashlib.sha256(f"{self.request.user}".encode('utf-8')).hexdigest()[:9]
         current_comment = News.objects.get(pk=self.kwargs['pk'])
         form.instance.original = current_comment
         form.instance.thread = current_comment.thread

@@ -13,7 +13,7 @@ def register(request):
             form.save()
             username = form.cleaned_data.get('username')
             messages.success(request, f'User {username} was successfully created!')
-            return redirect('home-page')
+            return redirect('threads')
     else:
         form = UserRegisterForm()
     return render(

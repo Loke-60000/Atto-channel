@@ -15,9 +15,9 @@
         {% for post in news %}
             <div class="post">
                 {% if post.author %}
-                    <p>{{ post.id }} &nbsp;Name: <a href="{% url 'user-comment' post.author %}">{{ post.author }}</a><span class="text-muted" > :{{ post.date|date:"Y/m/d (l) H:i:s" }}</span></p>
+                    <p>{{ post.id }} &nbsp;Name: <a href="{% url 'user-comment' post.author %}">{{ post.author }}</a><span class="text-muted" > :{{ post.date|date:"Y/m/d (l) H:i:s" }} &nbsp;&nbsp; ID:{{ post.rand_id }}</span></p>
                 {% else %}
-                    <p>{{ post.id }} &nbsp;Name: <b>Anonymous</b> <span class="text-muted" > :{{ post.date|date:"Y/m/d (l) H:i:s" }}</span></p>
+                    <p>{{ post.id }} &nbsp;Name: <b>Anonymous</b> <span class="text-muted" > :{{ post.date|date:"Y/m/d (l) H:i:s" }}  &nbsp;&nbsp; ID:{{ post.rand_id }}</span></p>
                 {% endif %}
                 <p>{{ post.text|striptags }}</p>
                 {% if post.img %}
@@ -30,7 +30,7 @@
                     {% if reply.original == post %}
                         <div class="post">
                         {% if reply.author %}
-                            <p>{{ reply.id }} &nbsp;Name: <a href="{% url 'user-comment' post.author %}">{{ reply.author }}</a><span class="text-muted" > :{{ reply.date|date:"Y/m/d (l) H:i:s" }}</span></p>
+                            <p>{{ reply.id }} &nbsp;Name: <a href="{% url 'user-comment' post.author %}">{{ reply.author }}</a><span class="text-muted" > :{{ reply.date|date:"Y/m/d (l) H:i:s" }} &nbsp;&nbsp; ID:{{ reply.rand_id }}</span></p>
                         {% else %}
                             <p>{{ reply.id }} &nbsp;Name: <b>Anonymous</b> <span class="text-muted" > :{{ reply.date|date:"Y/m/d (l) H:i:s" }}</span></p>
                         {% endif %}

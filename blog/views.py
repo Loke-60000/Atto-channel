@@ -180,4 +180,8 @@ class CreateRepliesView(CreateView):
 def about(request):
     return render(request, 'blog/about.html')
 
+def get404(request):
+    return render(request, 'blog/404.html')
+def get500(request):
+    return render(request, 'blog/500.html')
 # Create your views here.

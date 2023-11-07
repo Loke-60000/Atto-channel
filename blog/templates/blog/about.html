@@ -1,22 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+{% extends 'blog/base.html' %}
 
-    <link rel="stylesheet" href="static/blog/main.css">
-
-
-</head>
-<body>
-  <div class="container center">
+{% block content %}
+    <div class="container center">
         <a href="{% url 'threads' %}"><div class="Channel"><h1>@Channel</h1></div></a>
-        <div class="thread">
-            <div class="header">❏ About ❏</div>
-                <p> This is a free-speech forum only for high-intellectual anons. Kindly ask different organizations to stay away!
-                Dr.Pepper enjoyers and World-layer drifters are welcome.
-                </p>
-        </div>
         <div class="thread">
             <div class="header">❏ DEVELOPMENT ❏</div>
             <h2>Currently under inactive development </h2>
@@ -28,5 +14,4 @@
             <p>Amadeus Reborn Project leader</p>
         </div>
     </div>
-</body>
-</html>
+{% endblock %}

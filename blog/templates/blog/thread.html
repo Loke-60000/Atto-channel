@@ -21,8 +21,9 @@
                 {% endif %}
                 <p>{{ post.text|striptags }}</p>
                 {% if post.img %}
-                <div class="user_images">
-                    <img src="{{ post.img.url }}">
+<!--                user_images-->
+                <div>
+                    <img src="{{post.img.url}}" alt="[ Image idk ¯\_(ツ)_/¯ ]" >
                 </div>
                 {% endif %}
                 <h2 class="text-center"><a href="{% url 'comment-reply' post.id %}"><button class="btn btn-outline-secondary">add reply</button></a></h2>

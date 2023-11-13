@@ -5,7 +5,208 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}{% endblock %}</title>
-    <link rel="stylesheet" href="../static/blog/base.css">
+    <style>
+      :root {
+    --background-color: #8b84a1;
+    --container-bg: #fff;
+    --channel-bg: #79aabc;
+    --channel-border-color: #779da7;
+    --popular-border-color: #b8b3c4;
+    --text-color-white: white;
+    --text-color-black: black;
+    --text-color-header-mini: #33ccff;
+    --btn-bg: #79aabc;
+}
+
+
+body {
+    background: var(--background-color);
+}
+
+
+.container {
+    background: var(--container-bg);
+    margin: 4% 7%;
+    height: 1100px;
+    display: flex;
+    flex-direction: column;
+    padding: 0% 10%;
+}
+
+
+.Channel {
+    margin-top: 5%;
+    /* background: var(--channel-bg); */
+    background: rgb(135,183,201);
+    background: linear-gradient(90deg, rgba(135,183,201,1) 0%, rgba(106,147,160,1) 100%);
+    width: 50%;
+    margin-left: 25%;
+    margin-right: 25%;
+    text-align: center;
+    color: var(--text-color-white);
+    border: 8px solid var(--channel-border-color);
+    border-radius: 15px;
+}
+
+
+
+        .containerNav{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+
+        a{
+        text-decoration: none;
+        }
+
+
+         .btn-reg{
+            background: #33ccff;
+            width: 100%;
+            text-align: center;
+            color: white;
+            border: 2px solid black;
+            border-radius: 15px;
+         }
+         .containerMain{
+           background: #fff;
+           display: flex;
+           flex-direction: column;
+
+
+          }
+          .containerThread{
+           background: #fff;
+           margin: 4% 7%;
+           border-style: solid;
+          }
+
+          .text-center{
+            text-align: center;
+          }
+
+          .post{
+          width: 80%;
+          padding: 1px 3px 10px 16px;
+          margin: 8px;
+          max-width: 90%;
+        /* border-left: 4px solid rgb(102, 102, 102) */
+          background-color: rgba(102, 102, 102, 0.05);
+          }
+
+          .user_images {
+    margin: 10px;
+    width: 128px;
+    height: 128px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+    .title-thread{
+        background-color: grey;
+    }
+    .title1{
+      display: block;
+      font-size: 2em;
+      margin-bottom: 0.67em;
+      font-weight: bold;
+    }
+    :root {
+        --background-color: #8b84a1;
+        --container-bg: #fff;
+        --channel-bg: #79aabc;
+        --channel-border-color: #779da7;
+        --popular-border-color: #b8b3c4;
+        --text-color-white: white;
+        --text-color-black: black;
+        --text-color-header-mini: #33ccff;
+        --btn-bg: #79aabc;
+    }
+
+
+    .logo {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+    /* For smaller screens, you can adjust the size*/
+    @media (max-width: 768px) {
+        .logo {
+            max-width: 60%;
+        }
+    }
+
+    body {
+        background: var(--background-color);
+    }
+
+    .container {
+        background: var(--container-bg);
+        margin: 4% 7%;
+        height: 1100px;
+        display: flex;
+        flex-direction: column;
+        padding: 0% 10%;
+    }
+
+
+
+    .popular {
+        margin-top: 2%;
+        background: var(--container-bg);
+        width: 100%;
+        color: var(--text-color-black);
+        border: 7px solid var(--popular-border-color);
+        outline: thick solid var(--popular-border-color);
+    }
+
+    .thread {
+        margin-top: 2%;
+        background: var(--container-bg);
+        width: 100%;
+        color: var(--text-color-black);
+    }
+
+    .threads {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .element {
+        width: 50%;
+    }
+
+    .header {
+        background: var(--channel-bg);
+        color: var(--text-color-white);
+    }
+
+    .header-mini {
+        color: var(--text-color-header-mini);
+        font-size: 80%;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    .btn {
+        background-color: var(--btn-bg);
+        color: var(--text-color-white);
+        font-size: 15px;
+        text-align: center;
+        padding: 10px;
+    }
+
+    .center {
+        text-align: center;
+    }
+    </style>
 </head>
 <body>
     <div>

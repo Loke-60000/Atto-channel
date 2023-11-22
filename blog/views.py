@@ -94,19 +94,16 @@ class CreatePostView(CreateView):
         return ctx
 
     def form_valid(self, form):
+        
         #temporary
-        user_id_hashed = GetSession(self.request)
-
-        if user_id_hashed is None:
-            SetSession(self.request)
-        user_id_hashed = GetSession(self.request)
-
         if not isinstance(self.request.user, AnonymousUser):
             form.instance.author = self.request.user
             # user for unique id
             form.instance.rand_id = hashlib.sha256(f"{self.request.user}".encode('utf-8')).hexdigest()[:9]
         else:
-            form.instance.rand_id = user_id_hashed
+            if GetSession(self.request) is None:
+                SetSession(self.request)
+            form.instance.rand_id = hashlib.sha256(GetSession(self.request).encode('utf-8')).hexdigest()[:9]
 
         current_thread = Threads.objects.get(pk=self.kwargs['pk'])
         form.instance.thread = current_thread
@@ -129,14 +126,6 @@ class ShowThreadsView(ListView):
         return ctx
 
 
-#For testing! Change to ↑↑↑ later! Ps. 4nmus
-def threads(request):
-
-    data = {
-        'threads': Threads.objects.all(),
-        'title': 'Popular threads!'
-    }
-    return render(request, 'blog/main.html', data)
 
 
 class ThreadsDetailView(TemplateView):

@@ -69,16 +69,16 @@ class PostDetailView(DetailView):
         return ctx
 
 
-class DeletePostView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
-    model = News
-    success_url = '/'
-    template_name = 'blog/delete-comment.html'
-
-    def test_func(self):
-        news = self.get_object()
-        if self.request.user == news.author:
-            return True
-        return False
+# class DeletePostView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+#     model = News
+#     success_url = '/'
+#     template_name = 'blog/delete-comment.html'
+#
+#     def test_func(self):
+#         news = self.get_object()
+#         if self.request.user == news.author:
+#             return True
+#         return False
 
 
 class CreatePostView(CreateView):
@@ -94,7 +94,6 @@ class CreatePostView(CreateView):
         return ctx
 
     def form_valid(self, form):
-        
         #temporary
         if not isinstance(self.request.user, AnonymousUser):
             form.instance.author = self.request.user
@@ -155,7 +154,13 @@ class CreateRepliesView(CreateView):
     def form_valid(self, form):
         if not isinstance(self.request.user, AnonymousUser):
             form.instance.author = self.request.user
+            # user for unique id
             form.instance.rand_id = hashlib.sha256(f"{self.request.user}".encode('utf-8')).hexdigest()[:9]
+        else:
+            if GetSession(self.request) is None:
+                SetSession(self.request)
+            form.instance.rand_id = hashlib.sha256(GetSession(self.request).encode('utf-8')).hexdigest()[:9]
+
         current_comment = News.objects.get(pk=self.kwargs['pk'])
         form.instance.original = current_comment
         form.instance.thread = current_comment.thread

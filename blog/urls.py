@@ -5,7 +5,7 @@ urlpatterns = [
 
     path('threads/', views.ShowPostsView.as_view(), name='home-page'),
     path('comment/<int:pk>', views.PostDetailView.as_view(), name='comment-detail'),
-    path('comment/<int:pk>/delete', views.DeletePostView.as_view(), name='comment-delete'),
+    # path('comment/<int:pk>/delete', views.DeletePostView.as_view(), name='comment-delete'),
     path('user/<str:username>', views.UserAllPostsView.as_view(), name='user-comment'),
 
     path('threads/<int:pk>/add', views.CreatePostView.as_view(), name='comment-add'),

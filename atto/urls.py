@@ -30,5 +30,5 @@ urlpatterns = [
     path('profile/', userViews.profile, name='profile'),
 ]
 
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+#IDK whether it's safe when deployed ¯\_(ツ)_/¯
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

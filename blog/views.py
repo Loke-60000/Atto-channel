@@ -1,3 +1,4 @@
+import random
 import time
 
 from django.shortcuts import (
@@ -94,7 +95,6 @@ class CreatePostView(CreateView):
         return ctx
 
     def form_valid(self, form):
-        #temporary
         if not isinstance(self.request.user, AnonymousUser):
             form.instance.author = self.request.user
             # user for unique id
@@ -120,7 +120,8 @@ class ShowThreadsView(ListView):
         ctx['title'] = 'Popular threads!'
 
         # implement shuffle ? Subject to change. Ps 4nmus
-        ctx['threads'] = Threads.objects.all()
+        threads = Threads.objects.all()
+        ctx['threads'] = random.choices(threads, k= len(threads))
 
         return ctx
 

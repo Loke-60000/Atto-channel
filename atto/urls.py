@@ -29,7 +29,7 @@ urlpatterns = [
     path('user/', authViews.LoginView.as_view(template_name='users/user.html'), name='user'),
     path('exit/', authViews.LogoutView.as_view(template_name='users/exit.html'), name='exit'),
     path('profile/', userViews.profile, name='profile'),
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 #IDK whether it's safe when deployed ¯\_(ツ)_/¯
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

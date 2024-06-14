@@ -1,3 +1,4 @@
 Django
 gunicorn
 Pillow==9.0.1
+dj-static==0.0.6

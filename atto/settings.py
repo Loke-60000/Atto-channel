@@ -129,9 +129,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 #used for static folder with all css
 STATICFILES_DIRS = [
-    BASE_DIR / "static"
+    os.path.join(PROJECT_ROOT, '..', 'static')
 ]
-STATIC_ROOT = BASE_DIR / "staticfiles"
 #for auth
 LOGIN_REDIRECT_URL = 'profile'
 LOGIN_URL = 'user'

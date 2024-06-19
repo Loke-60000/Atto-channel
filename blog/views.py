@@ -11,7 +11,6 @@ from django.views.generic import (
     ListView,
     DetailView,
     CreateView,
-    DeleteView,
     TemplateView
 )
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
